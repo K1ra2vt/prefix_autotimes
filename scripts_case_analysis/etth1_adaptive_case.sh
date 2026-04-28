@@ -3,15 +3,18 @@
 # ============================================
 # AutoTimes Adaptive Prefix - ETTh1 Case Analysis
 # ============================================
-# 请在运行前配置以下参数:
-#   - GPU编号
-#   - LLM模型路径
-#   - 数据集路径
-# ============================================
 
-# ====== 需要配置的参数 ======
+# ====== GPU配置 ======
+# 如果知道GPU编号，直接填写；如果不知道，运行 nvidia-smi 查看
 GPU_ID="0"                    # 修改为可用的GPU编号
-LLM_CKP_DIR="/path/to/gpt2"  # 修改为GPT2模型路径
+
+# ====== 模型配置 ======
+# GPT2模型存放目录
+LLM_MODEL_DIR="/root/.cache/huggingface/hub/models--gpt2"
+# 或指定其他路径
+LLM_CKP_DIR="${LLM_MODEL_DIR}/tf_model"  # 根据实际模型结构调整
+
+# ====== 数据集配置 ======
 ROOT_PATH="./dataset/ETT-small/"  # 修改为数据集路径
 
 # ====== 模型配置 ======
@@ -72,122 +75,126 @@ echo "Prefix长度: $prefix_length"
 echo "训练轮数: $train_epochs"
 echo "=========================================="
 
-# ====== 训练阶段 ======
-echo "开始训练..."
-python -u run.py \
-  --task_name $task_name \
-  --is_training 1 \
-  --root_path $ROOT_PATH \
-  --data_path $data_path \
-  --model_id $model_id \
-  --model $model_name \
-  --data $data \
-  --seq_len $seq_len \
-  --label_len $label_len \
-  --token_len $token_len \
-  --test_seq_len $test_seq_len \
-  --test_label_len $test_label_len \
-  --batch_size $batch_size \
-  --learning_rate $learning_rate \
-  --prefix_learning_rate $prefix_learning_rate \
-  --encoder_decoder_learning_rate $encoder_decoder_learning_rate \
-  --itr $itr \
-  --train_epochs $train_epochs \
-  --num_workers $num_workers \
-  --use_amp \
-  --llm_ckp_dir $LLM_CKP_DIR \
-  --gpu $GPU_ID \
-  --des $des \
-  --cosine \
-  --tmax $tmax \
-  --mlp_hidden_dim $mlp_hidden_dim \
-  --mlp_hidden_layers $mlp_hidden_layers \
-  --use_prefix \
-  --prefix_length $prefix_length \
-  --prefix_mlp_hidden $prefix_mlp_hidden \
-  --prefix_mlp_layers $prefix_mlp_layers \
-  --freeze_llm_except_prefix \
-  --max_prompt_length $max_prompt_length \
-  --prefix_injection_mode $prefix_injection_mode \
-  --use_adaptive_prefix \
-  --adaptive_use_static_gating \
-  --adaptive_use_dynamic_intensity \
-  --adaptive_min_gate_value $adaptive_min_gate_value \
-  --adaptive_gate_temperature $adaptive_gate_temperature
-
-# 保存训练对应的setting名称
-TRAINING_SETTING=$(python -c "
-args_dict = {
-    'task_name': '$task_name',
-    'model_id': '$model_id',
-    'model': '$model_name',
-    'data': '$data',
-    'seq_len': $seq_len,
-    'label_len': $label_len,
-    'token_len': $token_len,
-    'learning_rate': $learning_rate,
-    'batch_size': $batch_size,
-    'weight_decay': $weight_decay,
-    'mlp_hidden_dim': $mlp_hidden_dim,
-    'mlp_hidden_layers': $mlp_hidden_layers,
-    'cosine': $cosine,
-    'mix_embeds': $mix_embeds,
-    'prefix_length': $prefix_length,
-    'prefix_mlp_hidden': $prefix_mlp_hidden,
-    'prefix_mlp_layers': $prefix_mlp_layers,
-    'max_prompt_length': $max_prompt_length,
-    'des': '$des',
-    'ii': 0
+# ====== 检查并下载模型 ======
+check_and_download_model() {
+    echo "检查GPT2模型..."
+    
+    # 检查模型是否已存在
+    if [ -d "$LLM_MODEL_DIR" ]; then
+        echo "模型已存在于: $LLM_MODEL_DIR"
+    else
+        echo "正在下载GPT2模型..."
+        python -c "from transformers import GPT2LMHeadModel, GPT2Tokenizer; \
+                  tokenizer = GPT2Tokenizer.from_pretrained('gpt2'); \
+                  model = GPT2LMHeadModel.from_pretrained('gpt2'); \
+                  print('GPT2模型下载完成')"
+        
+        # 检查默认缓存目录
+        DEFAULT_CACHE=$(python -c "from transformers import TRANSFORMERS_CACHE; print(TRANSFORMERS_CACHE)")
+        echo "模型缓存目录: $DEFAULT_CACHE"
+    fi
 }
-setting = '{task_name}_{model_id}_{model}_{data}_sl{seq_len}_ll{label_len}_tl{token_len}_lr{learning_rate}_bt{batch_size}_wd{weight_decay}_hd{mlp_hidden_dim}_hl{mlp_hidden_layers}_cos{cosine}_mix{mix_embeds}_pl{prefix_length}_pmh{prefix_mlp_hidden}_pml{prefix_mlp_layers}_mpl{max_prompt_length}_{des}_{ii}'.format(**args_dict)
-print(setting)
-")
 
-echo "训练完成, setting: $TRAINING_SETTING"
+# ====== 训练阶段 ======
+run_training() {
+    echo "开始训练..."
+    python -u run.py \
+      --task_name $task_name \
+      --is_training 1 \
+      --root_path $ROOT_PATH \
+      --data_path $data_path \
+      --model_id $model_id \
+      --model $model_name \
+      --data $data \
+      --seq_len $seq_len \
+      --label_len $label_len \
+      --token_len $token_len \
+      --test_seq_len $test_seq_len \
+      --test_label_len $test_label_len \
+      --batch_size $batch_size \
+      --learning_rate $learning_rate \
+      --prefix_learning_rate $prefix_learning_rate \
+      --encoder_decoder_learning_rate $encoder_decoder_learning_rate \
+      --itr $itr \
+      --train_epochs $train_epochs \
+      --num_workers $num_workers \
+      --use_amp \
+      --llm_ckp_dir $LLM_CKP_DIR \
+      --gpu $GPU_ID \
+      --des $des \
+      --cosine \
+      --tmax $tmax \
+      --mlp_hidden_dim $mlp_hidden_dim \
+      --mlp_hidden_layers $mlp_hidden_layers \
+      --use_prefix \
+      --prefix_length $prefix_length \
+      --prefix_mlp_hidden $prefix_mlp_hidden \
+      --prefix_mlp_layers $prefix_mlp_layers \
+      --freeze_llm_except_prefix \
+      --max_prompt_length $max_prompt_length \
+      --prefix_injection_mode $prefix_injection_mode \
+      --use_adaptive_prefix \
+      --adaptive_use_static_gating \
+      --adaptive_use_dynamic_intensity \
+      --adaptive_min_gate_value $adaptive_min_gate_value \
+      --adaptive_gate_temperature $adaptive_gate_temperature
+}
 
 # ====== 测试阶段 ======
-for test_pred_len in 96 192 336 720
-do
-  echo "测试预测长度: $test_pred_len"
-  python -u run.py \
-    --task_name $task_name \
-    --is_training 0 \
-    --root_path $ROOT_PATH \
-    --data_path $data_path \
-    --model_id $model_id \
-    --model $model_name \
-    --data $data \
-    --seq_len $seq_len \
-    --label_len $label_len \
-    --token_len $token_len \
-    --test_seq_len $test_seq_len \
-    --test_label_len $test_label_len \
-    --test_pred_len $test_pred_len \
-    --batch_size $batch_size \
-    --learning_rate $learning_rate \
-    --prefix_learning_rate $prefix_learning_rate \
-    --itr 1 \
-    --train_epochs $train_epochs \
-    --use_amp \
-    --llm_ckp_dir $LLM_CKP_DIR \
-    --gpu $GPU_ID \
-    --des $des \
-    --cosine \
-    --tmax $tmax \
-    --mlp_hidden_dim $mlp_hidden_dim \
-    --mlp_hidden_layers $mlp_hidden_layers \
-    --use_prefix \
-    --prefix_length $prefix_length \
-    --prefix_mlp_hidden $prefix_mlp_hidden \
-    --prefix_mlp_layers $prefix_mlp_layers \
-    --freeze_llm_except_prefix \
-    --max_prompt_length $max_prompt_length \
-    --prefix_injection_mode $prefix_injection_mode \
-    --use_adaptive_prefix \
-    --adaptive_use_static_gating \
-    --adaptive_use_dynamic_intensity \
-    --adaptive_min_gate_value $adaptive_min_gate_value \
-    --adaptive_gate_temperature $adaptive_gate_temperature
-done
+run_test() {
+    for test_pred_len in 96 192 336 720
+    do
+      echo "测试预测长度: $test_pred_len"
+      python -u run.py \
+        --task_name $task_name \
+        --is_training 0 \
+        --root_path $ROOT_PATH \
+        --data_path $data_path \
+        --model_id $model_id \
+        --model $model_name \
+        --data $data \
+        --seq_len $seq_len \
+        --label_len $label_len \
+        --token_len $token_len \
+        --test_seq_len $test_seq_len \
+        --test_label_len $test_label_len \
+        --test_pred_len $test_pred_len \
+        --batch_size $batch_size \
+        --learning_rate $learning_rate \
+        --prefix_learning_rate $prefix_learning_rate \
+        --itr 1 \
+        --train_epochs $train_epochs \
+        --use_amp \
+        --llm_ckp_dir $LLM_CKP_DIR \
+        --gpu $GPU_ID \
+        --des $des \
+        --cosine \
+        --tmax $tmax \
+        --mlp_hidden_dim $mlp_hidden_dim \
+        --mlp_hidden_layers $mlp_hidden_layers \
+        --use_prefix \
+        --prefix_length $prefix_length \
+        --prefix_mlp_hidden $prefix_mlp_hidden \
+        --prefix_mlp_layers $prefix_mlp_layers \
+        --freeze_llm_except_prefix \
+        --max_prompt_length $max_prompt_length \
+        --prefix_injection_mode $prefix_injection_mode \
+        --use_adaptive_prefix \
+        --adaptive_use_static_gating \
+        --adaptive_use_dynamic_intensity \
+        --adaptive_min_gate_value $adaptive_min_gate_value \
+        --adaptive_gate_temperature $adaptive_gate_temperature
+    done
+}
+
+# ====== 主流程 ======
+echo "步骤1: 检查GPU和模型"
+check_and_download_model
+
+echo "步骤2: 开始训练"
+run_training
+
+echo "步骤3: 测试"
+run_test
 
 echo "脚本运行完毕"
