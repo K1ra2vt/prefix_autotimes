@@ -1,0 +1,624 @@
+零散的记录
+    ETTh1_672_96_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd256_hl0_cosTrue_mixFalse_None  
+    mse:0.36742842197418213, mae:0.3996866047382355
+    long_term_forecast_ETTh1_672_96_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt128_wd0_hd512_hl2_cosTrue_mixTrue_Gpt2_0  
+    mse:0.3720499277114868, mae:0.407116174697876
+    long_term_forecast_ETTh1_672_96_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt128_wd0_hd512_hl2_cosTrue_mixTrue_Gpt2_0  
+    mse:0.4035046398639679, mae:0.4289533495903015
+    long_term_forecast_ETTh1_672_96_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt128_wd0_hd512_hl2_cosTrue_mixTrue_Gpt2_0  
+    mse:0.42194801568984985, mae:0.4421044588088989
+    long_term_forecast_ETTh1_672_96_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt128_wd0_hd512_hl2_cosTrue_mixTrue_Gpt2_0  
+    mse:0.44354721903800964, mae:0.46505752205848694
+    long_term_forecast_ETTh1_672_96_conditional_prefix_mlp_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt128_wd0_hd256_hl2_cosTrue_mixFalse_test_0  
+    mse:0.3708950877189636, mae:0.40794551372528076
+    long_term_forecast_ETTh1_672_96_conditional_prefix_pool_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt128_wd0_hd256_hl2_cosTrue_mixFalse_test_0  
+    mse:0.3708950877189636, mae:0.40794551372528076
+    long_term_forecast_ETTh1_672_96_conditional_prefix_hybrid_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt128_wd0_hd256_hl2_cosTrue_mixFalse_test_0  
+    mse:0.3708950877189636, mae:0.40794551372528076
+    long_term_forecast_ETTh1_672_96_baseline_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt128_wd0_hd256_hl2_cosTrue_mixFalse_test_0  
+    mse:0.3708950877189636, mae:0.40794551372528076
+
+# 使用GPT2的token，然后prefix进行测试，相同的学习率，epoch是3
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd256_hl2_cosTrue_mixTrue_pl8_pmh256_pml1_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.3878985643386841, mae:0.41399115324020386
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd256_hl2_cosTrue_mixTrue_pl8_pmh256_pml1_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4294503927230835, mae:0.440300852060318
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd256_hl2_cosTrue_mixTrue_pl8_pmh256_pml1_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.46655282378196716, mae:0.463611364364624
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd256_hl2_cosTrue_mixTrue_pl8_pmh256_pml1_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4712549149990082, mae:0.4851432740688324
+
+# 使用GPT2的token，然后prefix是8，不同的学习率，epoch=10
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd256_hl2_cosTrue_mixTrue_pl8_pmh256_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.3757098317146301, mae:0.40122750401496887
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd256_hl2_cosTrue_mixTrue_pl8_pmh256_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.42297035455703735, mae:0.42743027210235596
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd256_hl2_cosTrue_mixTrue_pl8_pmh256_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.45440179109573364, mae:0.44566550850868225
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd256_hl2_cosTrue_mixTrue_pl8_pmh256_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.46669885516166687, mae:0.4683908224105835
+
+# 这个是，epoch15,batchsize--1536，prefix_learning_rate=0.00005，encoder_decoder_learning_rate=0.002，prefix长度16，情况下的数据
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl16_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.39047372341156006, mae:0.42120394110679626
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl16_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.42344316840171814, mae:0.44134047627449036
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl16_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4454460144042969, mae:0.45536327362060547
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl16_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.47060874104499817, mae:0.4772264361381531
+
+这是在prefix是4，的情况下进行训练的
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.37511757016181946, mae:0.4092511236667633
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.40187758207321167, mae:0.4270220100879669
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.41930845379829407, mae:0.43903106451034546
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.45534124970436096, mae:0.47034233808517456
+
+增大epoch到25的结果！
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.3694324791431427, mae:0.39762958884239197
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4036160111427307, mae:0.41883066296577454
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.42433464527130127, mae:0.4329279065132141
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4463278353214264, mae:0.4596950113773346
+
+# 更换了结构化提示词的效果，epoch是25
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.368381142616272, mae:0.39547038078308105
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.40648117661476135, mae:0.41898849606513977
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.42867642641067505, mae:0.4341331720352173
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4319591820240021, mae:0.4523898661136627
+
+# 再测试，prefix=4,epoch=25,prefix_lr=1e-4,encoder_decoder_lr=0.001---这个是KV的prefix是一样的！
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.3664810359477997, mae:0.39338260889053345
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.40257978439331055, mae:0.41560354828834534
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.42298704385757446, mae:0.42901554703712463
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.42166802287101746, mae:0.44611066579818726
+
+# 这个是prefix_max_length=256的结果（有可能代码本身有问题）
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl256_ConditionalStructuredPrefix_0  
+    mse:0.3825558125972748, mae:0.40447965264320374
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl256_ConditionalStructuredPrefix_0  
+    mse:0.42671313881874084, mae:0.430863618850708
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl256_ConditionalStructuredPrefix_0  
+    mse:0.46234485507011414, mae:0.4527812600135803
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl256_ConditionalStructuredPrefix_0  
+    mse:0.4973677396774292, mae:0.481462687253952
+---
+# 用prefix_max_length=128，再跑一次
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl128_ConditionalStructuredPrefix_0  
+    mse:0.38525712490081787, mae:0.4082607924938202
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl128_ConditionalStructuredPrefix_0  
+    mse:0.42399826645851135, mae:0.4328203797340393
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl128_ConditionalStructuredPrefix_0  
+    mse:0.44704219698905945, mae:0.44941529631614685
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl128_ConditionalStructuredPrefix_0  
+    mse:0.4866165220737457, mae:0.48418083786964417
+
+# 最好的条件下，冲击epoch=30
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.3852258324623108, mae:0.405374675989151
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4278421401977539, mae:0.43100401759147644
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.45579609274864197, mae:0.44909170269966125
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4526064991950989, mae:0.46141836047172546
+---
+# shallow模式下，最佳参数，25轮
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.36875009536743164, mae:0.4063977599143982
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.6627984046936035, mae:0.5284945964813232
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.697041928768158, mae:0.5425027012825012
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.712985634803772, mae:0.5520070791244507
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.7247155904769897, mae:0.5656177401542664
+---
+# llama的复现（好像存在问题）
+    long_term_forecast_ETTh1_672_96_AutoTimes_Llama_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd256_hl0_cosTrue_mixTrue_Llama_ETTh1_0  
+    mse:0.37957122921943665, mae:0.41469842195510864
+    long_term_forecast_ETTh1_672_96_AutoTimes_Llama_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd256_hl0_cosTrue_mixTrue_Llama_ETTh1_0  
+    mse:0.4037979543209076, mae:0.43058574199676514
+    long_term_forecast_ETTh1_672_96_AutoTimes_Llama_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd256_hl0_cosTrue_mixTrue_Llama_ETTh1_0  
+    mse:0.41498395800590515, mae:0.43838921189308167
+    long_term_forecast_ETTh1_672_96_AutoTimes_Llama_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd256_hl0_cosTrue_mixTrue_Llama_ETTh1_0  
+    mse:0.4350014328956604, mae:0.45782551169395447
+---
+（最好的结果）这是使用，不同的K/V进行的prefix 得到的结果，pred-96变得更好了～（为什么再也复现不了这个东西了～）
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.36054277420043945, mae:0.39316585659980774
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.39353516697883606, mae:0.4136750102043152
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4102749228477478, mae:0.4250858724117279
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4141944646835327, mae:0.4420780837535858
+---
+# 加上了gated之后的结果
+    long_term_forecast_ETTh1_conditional_prefix_gated_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.3673517405986786, mae:0.3959190547466278
+    long_term_forecast_ETTh1_conditional_prefix_gated_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.40312662720680237, mae:0.41820958256721497
+    long_term_forecast_ETTh1_conditional_prefix_gated_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4205506145954132, mae:0.43084195256233215
+    long_term_forecast_ETTh1_conditional_prefix_gated_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt256_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.426728755235672, mae:0.4460686445236206
+---
+# 真关闭mix
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_ConditionalStructuredPrefix_0  
+    mse:0.36335694789886475, mae:0.40280112624168396
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_ConditionalStructuredPrefix_0  
+    mse:0.39442044496536255, mae:0.4245937764644623
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_ConditionalStructuredPrefix_0  
+    mse:0.4111267924308777, mae:0.4370526075363159
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_ConditionalStructuredPrefix_0  
+    mse:0.43462517857551575, mae:0.4599103629589081
+从这个结果来看，好像是关掉mix_embeds的效果更好一些呢～
+# 测试一次，不关掉这个mix,也就是嵌入时间戳信息
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.3742814362049103, mae:0.3988208770751953
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4103495180606842, mae:0.4221598505973816
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4368973970413208, mae:0.4390190541744232
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.45641762018203735, mae:0.46252959966659546
+---
+修改直接跑加上gated的呢？垃圾
+    long_term_forecast_ETTh1_stage2_gated_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsgated_Stage2GatedOnly_0  
+    mse:0.7490990161895752, mae:0.5937243700027466
+    long_term_forecast_ETTh1_stage2_gated_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsgated_Stage2GatedOnly_0  
+    mse:0.7506784796714783, mae:0.5967644453048706
+    long_term_forecast_ETTh1_stage2_gated_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsgated_Stage2GatedOnly_0  
+    mse:0.7363293170928955, mae:0.5966503620147705
+    long_term_forecast_ETTh1_stage2_gated_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsgated_Stage2GatedOnly_0  
+    mse:0.7273266315460205, mae:0.6098452210426331
+---
+在batchsize为1024下，prefix_lr是0.0002，encoder_decoder_learning_rate是0.0005，25轮次，情况下跑出来的结果
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsprefix_Stage1PrefixOnly_0  
+    mse:0.3636067807674408, mae:0.39447158575057983（其实这个单纯pred-96的效果是可以的了）
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsprefix_Stage1PrefixOnly_0  
+    mse:0.4003237783908844, mae:0.418813019990921
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsprefix_Stage1PrefixOnly_0  
+    mse:0.42897844314575195, mae:0.43687424063682556
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsprefix_Stage1PrefixOnly_0  
+    mse:0.47783783078193665, mae:0.47437238693237305
+下面是在上四个情况下，训练gated，prefix_lr 是0.0002，使用默认学习率训练gated（gated的效果很差很差很差）
+    long_term_forecast_ETTh1_stage2_gated_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsgated_Stage2GatedOnly_0  
+    mse:0.4909834563732147, mae:0.47233855724334717
+    long_term_forecast_ETTh1_stage2_gated_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsgated_Stage2GatedOnly_0  
+    mse:0.5099486112594604, mae:0.48468607664108276
+    long_term_forecast_ETTh1_stage2_gated_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsgated_Stage2GatedOnly_0  
+    mse:0.5172317624092102, mae:0.4945409893989563
+    long_term_forecast_ETTh1_stage2_gated_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_tsgated_Stage2GatedOnly_0  
+    mse:0.5464511513710022, mae:0.527169942855835
+---# 正则化更多的结果
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_Stage1PrefixOnly_0  
+    mse:0.3640125095844269, mae:0.3952484428882599
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_Stage1PrefixOnly_0  
+    mse:0.39939889311790466, mae:0.4185848534107208
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_Stage1PrefixOnly_0  
+    mse:0.4244421422481537, mae:0.434737890958786
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_Stage1PrefixOnly_0  
+    mse:0.4518546760082245, mae:0.46051904559135437
+
+---
+# 应该是在我完全可控下的，tokenbase_prefix 的结果，比Time_LLM要更好一些
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.3616034686565399, mae:0.39129894971847534
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4022204875946045, mae:0.4171268343925476
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.42768150568008423, mae:0.43372541666030884
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.431121826171875, mae:0.4521835148334503
+---
+我删去统计数据的提示词试一下，结论（和上面的一样，说明太长的这个提示词是被截断了的）
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.3616034686565399, mae:0.39129894971847534
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4022204875946045, mae:0.4171268343925476
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.42768150568008423, mae:0.43372541666030884
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.431121826171875, mae:0.4521835148334503
+---
+加上动态双路，超烂的结果
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.37408751249313354, mae:0.39922115206718445
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4195161759853363, mae:0.4267083704471588
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.45144787430763245, mae:0.44642847776412964
+    long_term_forecast_ETTh1_stage1_prefix_only_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1024_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.47300636768341064, mae:0.47629690170288086
+-----
+preifx=4，10轮，encoder/decoder学习率=0.002，prefix学习率为0.0005，得到的结果
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.3789060413837433, mae:0.4074682891368866
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4005809724330902, mae:0.4235765337944031
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4121095836162567, mae:0.4323490560054779
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.43310192227363586, mae:0.4510886073112488
+preifx=4，10轮，encoder/decoder学习率=0.002，prefix学习率为0.002，得到的结果
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.37465745210647583, mae:0.40434062480926514
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.39804503321647644, mae:0.42162564396858215
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.40992096066474915, mae:0.4312790632247925
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.43191608786582947, mae:0.45220819115638733
+preifx=2，10轮，encoder/decoder学习率=0.002，prefix学习率为0.002，得到的结果
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl2_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.3764851987361908, mae:0.40596362948417664
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl2_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.3994695544242859, mae:0.42288872599601746
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl2_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4115943908691406, mae:0.4319089651107788
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl2_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4322071671485901, mae:0.45082637667655945
+preifx=4，10轮，encoder/decoder学习率=0.002，prefix学习率为0.002，得到的结果，prefix从0初始化开始
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.37465745210647583, mae:0.40434062480926514
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.39804503321647644, mae:0.42162564396858215
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.40992096066474915, mae:0.4312790632247925
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt2048_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.43191608786582947, mae:0.45220819115638733
+不带嵌入
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.3832743167877197, mae:0.40855109691619873
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.41093572974205017, mae:0.4276033639907837
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4252474904060364, mae:0.43708130717277527
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.4513099193572998, mae:0.4587683081626892
+带嵌入
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.37998485565185547, mae:0.410173237323761
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.41740769147872925, mae:0.4361054003238678
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.44970521330833435, mae:0.45784541964530945
+    long_term_forecast_ETTh1_test_conditional_prefix_tuning_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0005_bt1536_wd0_hd512_hl2_cosTrue_mixTrue_pl4_pmh512_pml2_mpl64_ConditionalStructuredPrefix_0  
+    mse:0.5022329688072205, mae:0.499121755361557
+prefix的长度调整参数
+    prefix=4（最好）--测试，还是可用，脚本是conditional_prefix_test
+        prefix调参，prefix_lr=0.0001,encoder/decoder_lr=0.005,10轮，tmax=25,batch=1536,
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.36065831780433655, mae:0.39227986335754395
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.39442184567451477, mae:0.4144565165042877
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.41406816244125366, mae:0.4275755286216736
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.4257971942424774, mae:0.4493412673473358
+    prefix=2
+    prefix调参，prefix_lr=0.0001,encoder/decoder_lr=0.005,10轮，tmax=25,batch=1536,
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl2_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.3666108548641205, mae:0.39547356963157654
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl2_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.40332651138305664, mae:0.4190828204154968
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl2_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.4298047423362732, mae:0.4361816942691803
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl2_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.47351646423339844, mae:0.47327855229377747
+    prefix=6
+    prefix调参，prefix_lr=0.0001,encoder/decoder_lr=0.005,10轮，tmax=25,batch=1536,
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl6_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.37168067693710327, mae:0.4021621346473694
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl6_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.4003625512123108, mae:0.4208900034427643
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl6_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.4155627191066742, mae:0.43080294132232666
+        long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl6_pmh512_pml2_mpl64_onePrefix_0  
+        mse:0.4307292103767395, mae:0.44696587324142456
+修改提示词，可能真正可用的一版提示词（反而不可用了）
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.3674849569797516, mae:0.3983463943004608
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4014107286930084, mae:0.42131391167640686
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.42209991812705994, mae:0.43568554520606995
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.44765567779541016, mae:0.46646279096603394
+新增教Encoder如何看，这个时序数据(随机初始化)
+    long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+    mse:0.37944990396499634, mae:0.40892842411994934
+    long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+    mse:0.40562933683395386, mae:0.42669886350631714
+    long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+    mse:0.4173535406589508, mae:0.43436330556869507
+    long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+    mse:0.4416271448135376, mae:0.4559932351112366
+modulation：
+    加上modulation（较小值初始化），prefix_lr=0.0001,encoder/decoder_lr=0.0005,10轮，tmax=25，门的学习率=0.002
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.36766496300697327, mae:0.4020220935344696
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.3959426283836365, mae:0.4209495484828949
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.4127890467643738, mae:0.4328036606311798
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.002_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.4456995129585266, mae:0.4588836133480072
+    （长程上的效果很好啊）加上modulation为0初始化，prefix_lr=0.0001,encoder/decoder_lr=0.0005,10轮，tmax=25，门的学习率=0.0001
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.3648522198200226, mae:0.40049540996551514
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.3907252550125122, mae:0.4179222583770752
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.4031851291656494, mae:0.4277690351009369
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.42538195848464966, mae:0.44930407404899597
+    调整参数试一下呢
+    加上了，glm給我加的zero的bias启动，结果
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.36484819650650024, mae:0.4002140760421753
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.39098653197288513, mae:0.417675644159317
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.40395504236221313, mae:0.42766693234443665
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.42883360385894775, mae:0.4502553939819336
+    按照之前的，0.0001的gated的训练，添加了在大于96才启用modulation的去跑出来的结果
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.36484819650650024, mae:0.4002140760421753
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.3952738344669342, mae:0.4180683493614197
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.40429258346557617, mae:0.42618149518966675
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.41057899594306946, mae:0.44323843717575073
+    0.1的gated初始化，0.0001,0.0001,0.0005的学习率开始(还判断了，是不是开启，96的窗口)
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.37251755595207214, mae:0.4052290916442871
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.39886578917503357, mae:0.42483070492744446
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.40803223848342896, mae:0.43406781554222107
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_PromptModulation_0  
+        mse:0.42325007915496826, mae:0.4583524763584137
+    删掉gated，直接使用sigmod来限定modulation的范围
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.3824116587638855, mae:0.4094181060791015
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.40723511576652527, mae:0.425987184047699
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.4151458740234375, mae:0.43182915449142456
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.42920756340026855, mae:0.44906458258628845
+    说的，平滑过渡的调制
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.37887006998062134, mae:0.40529611706733704
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.40006640553474426, mae:0.42018836736679077
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.41324254870414734, mae:0.4314688444137573
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.44756418466567993, mae:0.46363452076911926
+    修改，调制维度和层都到128
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.37555259466171265, mae:0.4068494141101837
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.4002966284751892, mae:0.42420053482055664
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.41032853722572327, mae:0.4314613342285156
+        long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+        mse:0.42837998270988464, mae:0.4494416117668152
+证实，至少在3090上，切换gpu不影响效果
+    long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+    mse:0.3709721267223358, mae:0.404712438583374
+    long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+    mse:0.39690470695495605, mae:0.42182162404060364
+    long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+    mse:0.4071643352508545, mae:0.4290320575237274
+    long_term_forecast_ETTh1_prompt_modulation_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_new_Prompt_modulation_0  
+    mse:0.4253849387168884, mae:0.44847992062568665
+
+增大了encdoer的512-1024，结果相比之下反而还下降了
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd1024_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.3733308017253876, mae:0.3972336947917938
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd1024_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4143555462360382, mae:0.4220477342605591
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd1024_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.43757468461990356, mae:0.43740326166152954
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd1024_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4554677903652191, mae:0.4658135175704956
+缩小Encoder从512-256
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd256_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.3682067394256592, mae:0.3974352777004242
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd256_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.40971750020980835, mae:0.4221491515636444
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd256_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4360036849975586, mae:0.43806934356689453
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd256_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4498685300350189, mae:0.4618988335132599
+
+测试有没有被AI給改烂（没有改烂）
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.36065831780433655, mae:0.39227986335754395
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.39442184567451477, mae:0.4144565165042877
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.41406816244125366, mae:0.4275755286216736
+    long_term_forecast_ETTh1_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_onePrefix_0  
+    mse:0.4257971942424774, mae:0.4493412673473358
+claude改的，使用cross_attn的prefix
+    long_term_forecast_ETTh1_cross_attn_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_CrossAttnPrefix_0  
+    mse:0.37489956617355347, mae:0.4053748846054077
+    long_term_forecast_ETTh1_cross_attn_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_CrossAttnPrefix_0  
+    mse:0.4067455232143402, mae:0.42473986744880676
+    long_term_forecast_ETTh1_cross_attn_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_CrossAttnPrefix_0  
+    mse:0.42463451623916626, mae:0.43543729186058044
+    long_term_forecast_ETTh1_cross_attn_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_CrossAttnPrefix_0  
+    mse:0.46001124382019043, mae:0.45993801951408386
+lora+prefix
+    加上了，prefix+lora，然后分层，2，4，6
+        long_term_forecast_ETTh1_lora_layerwise_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_LoRALayerwisePrefix_0  
+        mse:0.37045562267303467, mae:0.3957619071006775
+        long_term_forecast_ETTh1_lora_layerwise_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_LoRALayerwisePrefix_0  
+        mse:0.41283032298088074, mae:0.4211426377296448
+        long_term_forecast_ETTh1_lora_layerwise_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_LoRALayerwisePrefix_0  
+        mse:0.44096821546554565, mae:0.4381890296936035
+        long_term_forecast_ETTh1_lora_layerwise_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_LoRALayerwisePrefix_0  
+        mse:0.4715471863746643, mae:0.46784019470214844
+    加上了lora+prefix，分层为4，4，4的结果
+        long_term_forecast_ETTh1_lora_layerwise_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_LoRALayerwisePrefix_0  
+        mse:0.36963292956352234, mae:0.4020022749900818
+        long_term_forecast_ETTh1_lora_layerwise_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_LoRALayerwisePrefix_0  
+        mse:0.39712223410606384, mae:0.42061761021614075
+        long_term_forecast_ETTh1_lora_layerwise_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_LoRALayerwisePrefix_0  
+        mse:0.41198965907096863, mae:0.4314113259315491
+        long_term_forecast_ETTh1_lora_layerwise_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_LoRALayerwisePrefix_0  
+        mse:0.4326714277267456, mae:0.4522385001182556
+动态的调整，自适应选择注入
+    long_term_forecast_ETTh1_adaptive_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_adaptivePrefix_0  
+    mse:0.3610248267650604, mae:0.39164501428604126
+    long_term_forecast_ETTh1_adaptive_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_adaptivePrefix_0  
+    mse:0.3949071764945984, mae:0.4129203259944916
+    long_term_forecast_ETTh1_adaptive_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_adaptivePrefix_0  
+    mse:0.4135458469390869, mae:0.4250125288963318
+    long_term_forecast_ETTh1_adaptive_prefix_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_adaptivePrefix_0  
+    mse:0.4163818061351776, mae:0.4405752122402191
+
+温度0.05下都一样
+    long_term_forecast_ETTh1_grid_T0.05_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.1_0  
+    mse:0.383969247341156, mae:0.4063567519187927
+    long_term_forecast_ETTh1_grid_T0.05_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.1_0  
+    mse:0.41850945353507996, mae:0.4265778362751007
+    long_term_forecast_ETTh1_grid_T0.05_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.1_0  
+    mse:0.4398180842399597, mae:0.4397295415401459
+    long_term_forecast_ETTh1_grid_T0.05_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.1_0  
+    mse:0.4667894244194031, mae:0.4648464322090149
+
+    long_term_forecast_ETTh1_grid_T0.05_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.2_0  
+    mse:0.383969247341156, mae:0.4063567519187927
+    long_term_forecast_ETTh1_grid_T0.05_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.2_0  
+    mse:0.41850945353507996, mae:0.4265778362751007
+    long_term_forecast_ETTh1_grid_T0.05_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.2_0  
+    mse:0.4398180842399597, mae:0.4397295415401459
+    long_term_forecast_ETTh1_grid_T0.05_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.2_0  
+    mse:0.4667894244194031, mae:0.4648464322090149
+
+    long_term_forecast_ETTh1_grid_T0.05_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.3_0  
+    mse:0.383969247341156, mae:0.4063567519187927
+    long_term_forecast_ETTh1_grid_T0.05_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.3_0  
+    mse:0.41850945353507996, mae:0.4265778362751007
+    long_term_forecast_ETTh1_grid_T0.05_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.3_0  
+    mse:0.4398180842399597, mae:0.4397295415401459
+    long_term_forecast_ETTh1_grid_T0.05_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.3_0  
+    mse:0.4667894244194031, mae:0.4648464322090149
+
+
+温度0.1下
+    long_term_forecast_ETTh1_grid_T0.1_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.1_0  
+    mse:0.3610248267650604, mae:0.39164501428604126
+    long_term_forecast_ETTh1_grid_T0.1_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.1_0  
+    mse:0.3949071764945984, mae:0.4129203259944916
+    long_term_forecast_ETTh1_grid_T0.1_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.1_0  
+    mse:0.4135458469390869, mae:0.4250125288963318
+    long_term_forecast_ETTh1_grid_T0.1_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.1_0  
+    mse:0.4163818061351776, mae:0.4405752122402191
+
+    long_term_forecast_ETTh1_grid_T0.1_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.2_0  
+    mse:0.3610248267650604, mae:0.39164501428604126
+    long_term_forecast_ETTh1_grid_T0.1_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.2_0  
+    mse:0.3949071764945984, mae:0.4129203259944916
+    long_term_forecast_ETTh1_grid_T0.1_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.2_0  
+    mse:0.4135458469390869, mae:0.4250125288963318
+    long_term_forecast_ETTh1_grid_T0.1_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.2_0  
+    mse:0.4163818061351776, mae:0.4405752122402191
+
+    long_term_forecast_ETTh1_grid_T0.1_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.3_0  
+    mse:0.3610248267650604, mae:0.39164501428604126
+    long_term_forecast_ETTh1_grid_T0.1_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.3_0  
+    mse:0.3949071764945984, mae:0.4129203259944916
+    long_term_forecast_ETTh1_grid_T0.1_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.3_0  
+    mse:0.4135458469390869, mae:0.4250125288963318
+    long_term_forecast_ETTh1_grid_T0.1_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.3_0  
+    mse:0.4163818061351776, mae:0.4405752122402191
+
+温度0.2下的都一样
+    long_term_forecast_ETTh1_grid_T0.2_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.1_0  
+    mse:0.365361750125885, mae:0.396074503660202
+    long_term_forecast_ETTh1_grid_T0.2_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.1_0  
+    mse:0.3996400535106659, mae:0.4180452525615692
+    long_term_forecast_ETTh1_grid_T0.2_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.1_0  
+    mse:0.4209248125553131, mae:0.4319818913936615
+    long_term_forecast_ETTh1_grid_T0.2_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.1_0  
+    mse:0.44334304332733154, mae:0.45796287059783936
+
+    long_term_forecast_ETTh1_grid_T0.2_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.2_0  
+    mse:0.365361750125885, mae:0.396074503660202
+    long_term_forecast_ETTh1_grid_T0.2_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.2_0  
+    mse:0.3996400535106659, mae:0.4180452525615692
+    long_term_forecast_ETTh1_grid_T0.2_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.2_0  
+    mse:0.4209248125553131, mae:0.4319818913936615
+    long_term_forecast_ETTh1_grid_T0.2_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.2_0  
+    mse:0.44334304332733154, mae:0.45796287059783936
+
+
+    long_term_forecast_ETTh1_grid_T0.2_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.3_0  
+    mse:0.365361750125885, mae:0.396074503660202
+    long_term_forecast_ETTh1_grid_T0.2_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.3_0  
+    mse:0.3996400535106659, mae:0.4180452525615692
+    long_term_forecast_ETTh1_grid_T0.2_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.3_0  
+    mse:0.4209248125553131, mae:0.4319818913936615
+    long_term_forecast_ETTh1_grid_T0.2_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.3_0  
+    mse:0.44334304332733154, mae:0.45796287059783936
+
+短期预测，我的总方法跑出来的效果
+    smape: {'Yearly': 13.506, 'Quarterly': 10.166, 'Monthly': 12.916, 'Others': 5.083, 'Average': 12.0}
+    mape: {'Yearly': 17.447, 'Quarterly': 11.763, 'Monthly': 15.052, 'Others': 6.964, 'Average': 14.409}
+    mase: {'Yearly': 3.013, 'Quarterly': 1.19, 'Monthly': 0.954, 'Others': 3.394, 'Average': 1.606}
+    owa: {'Yearly': 0.792, 'Quarterly': 0.895, 'Monthly': 0.896, 'Others': 1.07, 'Average': 0.862}
+原始的gpt2的短期预测的结果
+    smape: {'Yearly': 13.906, 'Quarterly': 10.561, 'Monthly': 13.176, 'Others': 5.119, 'Average': 12.313}
+    mape: {'Yearly': 17.137, 'Quarterly': 12.589, 'Monthly': 15.503, 'Others': 6.731, 'Average': 14.741}
+    mase: {'Yearly': 3.157, 'Quarterly': 1.229, 'Monthly': 0.974, 'Others': 3.371, 'Average': 1.657}
+    owa: {'Yearly': 0.823, 'Quarterly': 0.927, 'Monthly': 0.915, 'Others': 1.07, 'Average': 0.887}
+
+>>>>>>>testing : zero_shot_forecast_m3_Monthly_adaptive_prefix_AutoTimes_Gpt2_tsf_sl48_ll24_tl24_lr0.001_bt16_wd0_hd128_hl3_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_Exp_adaptive_0<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+48 24 48
+test 414
+test shape: (414, 48, 1) (414, 48, 1)
+mape:56.841530, smape:39.7321
+>>>>>>>testing : zero_shot_forecast_m3_Monthly_adaptive_prefix_AutoTimes_Gpt2_tsf_sl28_ll14_tl14_lr0.0001_bt16_wd0_hd256_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_Exp_adaptive_0<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+28 14 14
+test 4227
+test shape: (4227, 14, 1) (4227, 14, 1)
+mape:4.379797, smape:3.1654 
+weather我的结果
+    long_term_forecast_weather_672_96_adaptive_prefix_AutoTimes_Gpt2_custom_sl672_ll576_tl96_lr0.0001_bt2048_wd0_hd512_hl2_cosFalse_mixFalse_pl4_pmh512_pml2_mpl64_Exp_adaptive_0  
+    mse:0.14896607398986816, mae:0.19820035994052887
+    long_term_forecast_weather_672_96_adaptive_prefix_AutoTimes_Gpt2_custom_sl672_ll576_tl96_lr0.0001_bt2048_wd0_hd512_hl2_cosFalse_mixFalse_pl4_pmh512_pml2_mpl64_Exp_adaptive_0  
+    mse:0.19535812735557556, mae:0.24205052852630615
+    long_term_forecast_weather_672_96_adaptive_prefix_AutoTimes_Gpt2_custom_sl672_ll576_tl96_lr0.0001_bt2048_wd0_hd512_hl2_cosFalse_mixFalse_pl4_pmh512_pml2_mpl64_Exp_adaptive_0  
+    mse:0.24821579456329346, mae:0.2832493782043457
+    long_term_forecast_weather_672_96_adaptive_prefix_AutoTimes_Gpt2_custom_sl672_ll576_tl96_lr0.0001_bt2048_wd0_hd512_hl2_cosFalse_mixFalse_pl4_pmh512_pml2_mpl64_Exp_adaptive_0  
+    mse:0.3214603066444397, mae:0.3350221812725067
+
+long_term_forecast_ECL_672_96_adaptive_prefix_AutoTimes_Gpt2_custom_sl672_ll576_tl96_lr0.0001_bt2048_wd1e-05_hd1024_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_test_0  
+mse:0.1364148110151291, mae:0.23158197104930878
+
