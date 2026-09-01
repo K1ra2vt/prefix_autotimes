@@ -512,24 +512,6 @@ lora+prefix
     long_term_forecast_ETTh1_grid_T0.05_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.1_0  
     mse:0.4667894244194031, mae:0.4648464322090149
 
-    long_term_forecast_ETTh1_grid_T0.05_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.2_0  
-    mse:0.383969247341156, mae:0.4063567519187927
-    long_term_forecast_ETTh1_grid_T0.05_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.2_0  
-    mse:0.41850945353507996, mae:0.4265778362751007
-    long_term_forecast_ETTh1_grid_T0.05_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.2_0  
-    mse:0.4398180842399597, mae:0.4397295415401459
-    long_term_forecast_ETTh1_grid_T0.05_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.2_0  
-    mse:0.4667894244194031, mae:0.4648464322090149
-
-    long_term_forecast_ETTh1_grid_T0.05_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.3_0  
-    mse:0.383969247341156, mae:0.4063567519187927
-    long_term_forecast_ETTh1_grid_T0.05_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.3_0  
-    mse:0.41850945353507996, mae:0.4265778362751007
-    long_term_forecast_ETTh1_grid_T0.05_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.3_0  
-    mse:0.4398180842399597, mae:0.4397295415401459
-    long_term_forecast_ETTh1_grid_T0.05_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.05_M0.3_0  
-    mse:0.4667894244194031, mae:0.4648464322090149
-
 
 温度0.1下
     long_term_forecast_ETTh1_grid_T0.1_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.1_0  
@@ -541,23 +523,6 @@ lora+prefix
     long_term_forecast_ETTh1_grid_T0.1_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.1_0  
     mse:0.4163818061351776, mae:0.4405752122402191
 
-    long_term_forecast_ETTh1_grid_T0.1_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.2_0  
-    mse:0.3610248267650604, mae:0.39164501428604126
-    long_term_forecast_ETTh1_grid_T0.1_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.2_0  
-    mse:0.3949071764945984, mae:0.4129203259944916
-    long_term_forecast_ETTh1_grid_T0.1_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.2_0  
-    mse:0.4135458469390869, mae:0.4250125288963318
-    long_term_forecast_ETTh1_grid_T0.1_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.2_0  
-    mse:0.4163818061351776, mae:0.4405752122402191
-
-    long_term_forecast_ETTh1_grid_T0.1_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.3_0  
-    mse:0.3610248267650604, mae:0.39164501428604126
-    long_term_forecast_ETTh1_grid_T0.1_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.3_0  
-    mse:0.3949071764945984, mae:0.4129203259944916
-    long_term_forecast_ETTh1_grid_T0.1_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.3_0  
-    mse:0.4135458469390869, mae:0.4250125288963318
-    long_term_forecast_ETTh1_grid_T0.1_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.1_M0.3_0  
-    mse:0.4163818061351776, mae:0.4405752122402191
 
 温度0.2下的都一样
     long_term_forecast_ETTh1_grid_T0.2_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.1_0  
@@ -569,24 +534,6 @@ lora+prefix
     long_term_forecast_ETTh1_grid_T0.2_M0.1_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.1_0  
     mse:0.44334304332733154, mae:0.45796287059783936
 
-    long_term_forecast_ETTh1_grid_T0.2_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.2_0  
-    mse:0.365361750125885, mae:0.396074503660202
-    long_term_forecast_ETTh1_grid_T0.2_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.2_0  
-    mse:0.3996400535106659, mae:0.4180452525615692
-    long_term_forecast_ETTh1_grid_T0.2_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.2_0  
-    mse:0.4209248125553131, mae:0.4319818913936615
-    long_term_forecast_ETTh1_grid_T0.2_M0.2_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.2_0  
-    mse:0.44334304332733154, mae:0.45796287059783936
-
-
-    long_term_forecast_ETTh1_grid_T0.2_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.3_0  
-    mse:0.365361750125885, mae:0.396074503660202
-    long_term_forecast_ETTh1_grid_T0.2_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.3_0  
-    mse:0.3996400535106659, mae:0.4180452525615692
-    long_term_forecast_ETTh1_grid_T0.2_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.3_0  
-    mse:0.4209248125553131, mae:0.4319818913936615
-    long_term_forecast_ETTh1_grid_T0.2_M0.3_AutoTimes_Gpt2_ETTh1_sl672_ll576_tl96_lr0.0001_bt1536_wd0_hd512_hl2_cosTrue_mixFalse_pl4_pmh512_pml2_mpl64_grid_T0.2_M0.3_0  
-    mse:0.44334304332733154, mae:0.45796287059783936
 
 短期预测，我的总方法跑出来的效果
     smape: {'Yearly': 13.506, 'Quarterly': 10.166, 'Monthly': 12.916, 'Others': 5.083, 'Average': 12.0}

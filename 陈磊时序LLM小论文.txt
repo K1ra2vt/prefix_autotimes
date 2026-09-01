@@ -1,0 +1,816 @@
+%% 
+%% Copyright 2019-2024 Elsevier Ltd
+%% 
+%% Version 2.4
+%% 
+%% This file is part of the 'CAS Bundle'.
+%% --------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'CAS Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for cas-sc documentclass for 
+%% single column output.
+
+%\documentclass[a4paper,fleqn,longmktitle]{cas-sc}
+\documentclass[a4paper,fleqn]{cas-dc}
+\ExplSyntaxOn
+\cs_set:Npn \__first_footerline: {}
+\ExplSyntaxOff
+
+%\usepackage[numbers]{natbib}
+%\usepackage[authoryear]{natbib}
+\usepackage[authoryear,longnamesfirst]{natbib}
+
+%%%Author macros
+\def\tsc#1{\csdef{#1}{\textsc{\lowercase{#1}}\xspace}}
+\tsc{WGM}
+\tsc{QE}
+\tsc{EP}
+\tsc{PMS}
+\tsc{BEC}
+\tsc{DE}
+%%%
+
+\begin{document}
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+\shorttitle{Dynamic Gating and Semantic Guidance for Time Series Forecasting}
+\shortauthors{X. Wu et~al.}
+%\begin{frontmatter}
+
+\title [mode = title]{Large Language Models for Time Series Forecasting via Dynamic Gating and Semantic Guidance}                      
+\tnotemark[1,2]
+
+\tnotetext[1]{This work was supported by the National Natural Science Foundation of China (Grant No. U2336204).}
+
+\tnotetext[2]{This work was supported by the Key Development Projects of Sichuan Provincial Science and Technology Plan (Grant No. 2024YFG0005).}
+
+
+\author[1]{Xiaohua Wu}[type=editor,
+                        %auid=000,bioid=1,
+                        %prefix=Sir,
+                        %role=Researcher,
+                        orcid=0000-0003-1930-5149]
+\ead{wuxh@uestc.edu.cn}
+\credit{Conceptualization, Supervision, Project administration, Funding acquisition, Writing - Review \& Editing}
+
+\affiliation[1]{organization={University of Electronic Science and Technology of China},
+                addressline={No. 2006 Xiyuan Avenue, Gaoxin West District, Chengdu City}, 
+                city={Chengdu},
+                postcode={610000}, 
+                state={Sichuan},
+                country={China}}
+
+\author[1]{Lei Chen}[style=chinese]
+\ead{202322090726@std.uestc.edu.cn} 
+\credit{Methodology, Formal analysis, Investigation, Writing - Review \& Editing}
+
+\author[1]{Yichang Chen}[style=chinese]
+\cormark[1] 
+\ead{202521090323@std.uestc.edu.cn} 
+\credit{Conceptualization, Methodology, Software, Validation, Investigation, Data curation, Writing - Original Draft, Visualization}
+
+\author[1]{Zhichong Pu}[style=chinese]
+\cormark[1] 
+\ead{202522090727@std.uestc.edu.cn} 
+\credit{Software, Validation, Investigation, Data curation, Writing - Review \& Editing, Visualization}
+
+\author[1]{Junkai Liao}[style=chinese]
+\ead{202522090728@std.uestc.edu.cn} 
+\credit{Software, Validation, Formal analysis, Data curation, Visualization}
+
+\author[1]{Hao Chen}[style=chinese]
+\ead{202522090729@std.uestc.edu.cn} 
+\credit{Resources, Investigation, Validation, Writing - Review \& Editing}
+
+
+\cortext[cor1]{Corresponding author}
+
+\begin{abstract}
+Driven by the need for precise forecasting of complex non-stationary time series, this paper addresses fundamental challenges of large language models in cross-modal time series modeling: distribution misalignment between numerical sequences and language representations, cross-layer information interference, and long-range error accumulation caused by static semantic injection. We propose a forecasting framework that synergizes dynamic gating and semantic guidance. First, a structured prompting paradigm encodes task meta-information and multidimensional statistical features into deep semantic prefixes, and a reparameterization mechanism maps these prefixes into the attention key-value space to achieve cross-modal structural alignment. Second, to mitigate the redundancy of uniform semantic injection across layers, we design a dual-layer adaptive gating mechanism that jointly models layer-wise representation preferences and the temporal complexity of input samples, enabling dynamic, on-demand allocation of semantic guidance. Analytical discussion and empirical evidence indicate that this mechanism can regulate the gradient flow of semantic injection and reduce prefix-induced attention perturbations. Systematic evaluations on multiple cross-domain long-term and short-term benchmarks confirm that our method significantly improves forecasting accuracy and long-range robustness. This work provides an interpretable and scalable paradigm for LLM-driven cross-modal time series forecasting.
+
+% This template helps you to create a properly formatted \LaTeX\ manuscript.
+
+% \noindent\texttt{\textbackslash begin{abstract}} \dots 
+% \texttt{\textbackslash end{abstract}} and
+% \verb+\begin{keyword}+ \verb+...+ \verb+\end{keyword}+ 
+% which
+% contain the abstract and keywords respectively. 
+% Each keyword shall be separated by a \verb+\sep+ command.
+\end{abstract}
+
+% \begin{graphicalabstract}
+% \includegraphics{figs/cas-grabs.pdf}
+% \end{graphicalabstract}
+
+\begin{highlights}
+\item Structured semantic prefixes align time-series and language modalities.
+\item Dual-level dynamic gating adaptively allocates semantic intervention.
+\item Improves long-term forecasting robustness while keeping LLM frozen.
+\item Validated across multiple cross-domain benchmarks and LLM backbones.
+\end{highlights}
+
+\begin{keywords}
+Large Language Model \sep Time Series Forecasting \sep Semantic Prefix \sep Dynamic Gating
+\end{keywords}
+
+
+\maketitle
+
+\section{Introduction}
+Accurate modeling and long-term forecasting of complex non-stationary time series remain a fundamental challenge in artificial intelligence across domains such as industrial monitoring, financial analysis, and energy scheduling \citep{box2015time, makridakis2020m4, Taylor2018ForecastingAS, qaisar2024dynamic, Gonalves2025AnEV, jia2024smart, Zhu2025HVAC}. Although traditional deep learning models capture local patterns effectively \citep{Hochreiter1997LongSM, zhou2021informerefficienttransformerlong, wu2021autoformer, nie2023patchtst, liu2024itransformer}, they encounter bottlenecks in cross-domain generalization and complex evolutionary rule extraction due to their fixed inductive biases and limited representational capacity \citep{Mitchell2007TheNF, Battaglia2018RelationalIB, Tan2024AreLM}. Recently, large language models (LLMs) have shown significant potential in time series forecasting tasks owing to their semantic reasoning and cross-modal pattern recognition capabilities \citep{brown2020language, zhao2023survey, jin2024time, Gruver2023LargeLM, liu2024understanding, Zhou2023OneFAOnefitsall, ansari2024chronoslearninglanguagetime, das2024decoderonlyfoundationmodeltimeseries, Liu2024AutoTimesAT}. However, effectively activating their pre-trained knowledge to process highly structured numerical sequences with dynamically evolving distributions remains an open problem \citep{Tan2024AreLM, liu2024unitime}.
+
+The primary obstacle in adapting large language models to time series forecasting is the representational gap between numerical and linguistic modalities. Existing methods mostly rely on surface-level prompt engineering or static prefix tuning to introduce dataset statistical features or task backgrounds through natural language \citep{wei2023chainofthoughtpromptingelicitsreasoning, wang2023plan, jin2024time}. Since language tokens exhibit a discrete distribution in the latent space while time series data possess a continuous, high-dimensional, and non-stationary manifold structure \citep{box2015time, Durbin2001}, simple spatial mapping struggles to achieve deep feature alignment. Furthermore, these methods often lack structured encoding of intrinsic sequence statistical properties such as trend, periodicity, and volatility along with task meta-information \citep{wu2021autoformer, zhou2022fedformer, zhou2022film, Nematirad2025SPDNetSD}. Consequently, semantic guidance signals are easily diluted by noise when processing data with strong domain characteristics, which restricts the depth and stability of cross-modal reasoning and may even lead to severe hallucinations \citep{Ji_2023, zhang2023sirens, xu2024hallucination, Li2025MitigatingHI}.
+
+Another critical bottleneck arises from the static nature and layer-wise uniformity of the semantic injection mechanism. Mainstream prefix tuning strategies typically concatenate prompt vectors into the key-value matrices of all Transformer layers indiscriminately \citep{vaswani2017attention, radford2019language}, ignoring the inherent hierarchical representation learning mechanism of deep networks. Theoretically, the shallow layers of language models primarily extract local temporal patterns and high-frequency features, whereas the deep layers focus on global semantic integration and long-term dependency modeling \citep{chuang2024doladecodingcontrastinglayers, li2024inferencetimeinterventionelicitingtruthful}. Uniform injection intensity not only causes excessive perturbation in shallow attention distributions but also interferes with deep global reasoning paths. Additionally, the complexity of time series samples is highly heterogeneous. Fixed guidance strategies fail to adaptively adjust the intervention intensity based on the intrinsic dynamics of the input sequence. This leads to computational redundancy and semantic interference, which weakens the adaptability of the model to non-stationary distributions.
+
+To address the challenges of modal representation misalignment and the lack of inter-layer adaptive mechanisms, we propose a time series forecasting framework that integrates dynamic gating and semantic guidance. This approach fundamentally enhances the cross-modal reasoning capability of large language models when processing complex, non-stationary sequences, drawing inspiration from synergistic reasoning and acting paradigms \citep{yao2022react, wei2023chainofthoughtpromptingelicitsreasoning}. Specifically, we construct a structured prompting paradigm that explicitly encodes task meta-information and multidimensional statistical priors into deep semantic prefixes. A reparameterization module then precisely maps these prefixes into the key-value space of the attention mechanism, establishing a deep alignment path between the numerical manifold and linguistic representations. To overcome the inherent limitations of traditional static injection strategies, we further design an adaptive dynamic gating mechanism. This mechanism adopts a task-aware approach, jointly modeling the representation preferences at the network layer level and the task-level temporal dynamics to achieve dynamic layer-wise regulation of semantic intervention intensity. Consequently, this task-aware on-demand allocation strategy effectively suppresses shallow attention perturbations and deep semantic interference, significantly enhancing the representation robustness of the model against non-stationary distribution shifts.
+
+The core contributions of this work encompass three main aspects. 
+
+\begin{itemize}
+    \item We introduce a structured semantic prefix guidance mechanism to mitigate cross-modal distribution misalignment by explicitly encoding statistical features and task instructions. Combined with reparameterized prefix mapping, these elements achieve deep representation alignment between time series data and language modalities. 
+    \item We develop a dual-level adaptive dynamic gating injection strategy. This strategy integrates learnable layer-wise gates with an input-dependent intensity predictor to allocate semantic interventions on demand. We further provide an explicit formulation showing how the gate scales prefix injection in the Key/Value space and gives an analytical rationale for reducing prefix-induced attention perturbation and gradient interference. 
+    \item We conduct systematic empirical validation across multiple benchmark datasets. Comprehensive evaluations on long-term and short-term forecasting tasks demonstrate that the proposed method outperforms existing baselines in prediction accuracy, long-range stability, and cross-domain generalization. This provides a scalable and interpretable new paradigm for cross-modal time series modeling driven by large language models.
+\end{itemize}
+
+% The Elsevier cas-sc class is based on the
+% standard article class and supports almost all of the functionality of
+% that class. In addition, it features commands and options to format the
+% \begin{itemize} \item document style \item baselineskip \item front
+% matter \item keywords and MSC codes \item theorems, definitions and
+% proofs \item lables of enumerations \item citation style and labeling.
+% \end{itemize}
+
+% This class depends on the following packages
+% for its proper functioning:
+
+% \begin{enumerate}
+% \itemsep=0pt
+% \item {natbib.sty} for citation processing;
+% \item {geometry.sty} for margin settings;
+% \item {fleqn.clo} for left aligned equations;
+% \item {graphicx.sty} for graphics inclusion;
+% \item {hyperref.sty} optional packages if hyperlinking is
+%   required in the document;
+% \end{enumerate}  
+
+% All the above packages are part of any
+% standard \LaTeX{} installation.
+% Therefore, the users need not be
+% bothered about downloading any extra packages.
+
+\section{Related Works}
+\subsection{Classical Time Series Forecasting Algorithms}
+Time series forecasting is widely applied in critical domains including finance, healthcare, energy, and meteorology. As a core driver in decision-making processes, analyzing the complex underlying mechanisms and system dynamics within temporal data offers irreplaceable value for understanding future trends and mitigating potential risks. In existing forecasting paradigms, time-domain feature representation occupies a fundamental position. Time-domain modeling focuses on capturing local dependencies within sequences. By characterizing the dynamic evolution between specific time steps and historical variables, these models effectively extract short-term trends and periodic patterns. However, complex physical systems in the real world often exhibit strong non-stationarity and dynamic coupling effects. Traditional models relying on shallow local time-domain features suffer significant degradation in representation capacity and generalization performance when processing complex temporal data characterized by long spans, severe environmental noise, and dynamic feature drift. Relying solely on single-scale time step mapping fails to capture the underlying long-range evolution laws and high-order semantic information of the system. Therefore, breaking through the local receptive field limitations of traditional time-domain modeling, effectively integrating multi-scale temporal information, and enhancing the deep reasoning and predictive capabilities of models for complex dynamic processes remain core scientific challenges in the time series forecasting field. To address these challenges, recent signal processing approaches have explored adaptive correlation-enhanced networks and continuity-restoring mechanisms to dynamically capture multivariate dependencies and maintain robust state evolution \citep{WU2025105424,Ref-CEE-2}.
+
+Before large language models were introduced to this field, the research paradigm of time series forecasting evolved from classical statistics and traditional machine learning to deep neural networks. Early solutions primarily relied on statistical models like Autoregressive Integrated Moving Average (ARIMA) and Vector Autoregression (VAR) \citep{box2015time}, as well as advanced kernel-based adaptive filtering and Fourier transform-based routing algorithms for time-series prediction \citep{LI2025104984,Ref-CEE-1}. These methods possess rigorous mathematical foundations and good interpretability, but their representation capacity is severely constrained by strict linear assumptions and stationarity premises when dealing with real-world data exhibiting high dimensionality, strong nonlinearity, and dynamic non-stationarity. With the rise of deep learning, architectures represented by Long Short-Term Memory (LSTM) networks \citep{Hochreiter1997LongSM} achieve automated extraction of historical sequence dependencies by introducing gating mechanisms. Variant models based on the Transformer architecture such as Informer \citep{zhou2021informerefficienttransformerlong}, Autoformer \citep{wu2021autoformer}, and PatchTST \citep{nie2023patchtst} dominate multivariate long time series forecasting tasks due to the advantages of self-attention mechanisms in constructing global receptive fields. Furthermore, specialized Transformers incorporating periodic additive channel fusion have been recently proposed to further enhance long-term forecasting stability, particularly for complex power time series data \citep{YANG2026106057,Ref-CEE-3}. Although these traditional deep forecasting models achieve significant fitting accuracy on specific datasets, they essentially remain isolated models trained from scratch for single tasks. When facing dynamic feature drift, few-shot cold starts, and cross-domain generalization requirements in complex physical systems, traditional methods struggle to develop cross-domain high-order semantic understanding and logical reasoning capabilities due to their shallow dependence on pure numerical mappings. This limitation creates an urgent need to explore a new generation of forecasting paradigms equipped with strong prior knowledge and generalization capabilities.
+
+\subsection{Time series analysis based on LLMs}
+
+The recent success of large language models in natural language processing \citep{brown2020language, zhao2023survey} motivates researchers to explore their application potential in time series forecasting. However, applying these models to time series presents a core challenge of cross-modal alignment. Time series data typically consist of continuous and dense numerical signals embodying strict local physical laws and temporal dependencies, whereas natural language operates as a discrete and sparse symbolic system focusing on long-range semantic and syntactic correlations. Directly processing numerical sequences with large language models frequently causes tokenizers to incorrectly split numbers or compels the model to rely excessively on language priors, leading to distorted predictions. To bridge this modality gap, current time series large language model algorithms generally fall into three categories: text representation, feature mapping, and unified representation.
+
+Methods based on text representation, exemplified by LLMTime \citep{Gruver2023LargeLM}, primarily transform original numerical sequences and statistical features into natural language descriptions through prompt engineering before feeding them into the model. This approach leverages the strong reasoning and text generation capabilities of large language models and offers high interpretability. However, discrete text descriptions inevitably cause a loss of numerical precision, restricting the capacity of the model to capture fine-grained fluctuations and achieving only shallow feature alignment.
+
+Feature mapping methods aim to embed temporal features directly into the latent space of large language models using lightweight network structures. Approaches like Time-LLM \citep{jin2024time} and FPT \citep{lu2022frozen} utilize temporal reprogramming mechanisms or linear projections to map temporal patches into language-like features while keeping the backbone parameters frozen. While these methods exhibit greater sensitivity to numerical changes, they often lack explicit structured semantic guidance, making it difficult to maintain the internal physical structural patterns of time series data when addressing complex long-term forecasting tasks.
+
+Unified representation methods, such as UniTime \citep{liu2024unitime}, represent a deeper cross-modal alignment strategy that combines masked temporal modeling mechanisms with domain instruction alignment. This enables the model to understand text at the semantic level and simultaneously recognize temporal features. Compared to straightforward feature mapping, unified representation methods demonstrate stronger semantic consistency in multi-task generalization.
+
+However, a fundamental limitation across all these existing paradigms is the reliance on static semantic injection and the lack of dynamic regulation. Current approaches typically inject prompts or temporal features uniformly across all Transformer layers. They fail to recognize the inherent hierarchical representation learning mechanism of deep networks: shallow layers primarily process local temporal patterns and high-frequency features, whereas deep layers focus on global semantic integration. This uniform, static injection intensity not only causes excessive perturbation in shallow attention distributions but also interferes with deep global reasoning paths. Furthermore, when handling dynamic, non-stationary cross-domain data, these fixed guidance strategies cannot adaptively adjust the intervention intensity based on task requirements, leading to severe representation misalignment and computational redundancy. This creates an urgent need for an adaptive mechanism capable of dynamically regulating semantic guidance across different network layers.
+
+\section{Method}
+The direct application of large language models to time-series forecasting tasks presents inherent challenges, including comprehension biases toward multi-dimensional non-stationary data and error accumulation stemming from the forecasting paradigm. These issues cause the models to misinterpret inputs and task requirements, thereby degrading overall predictive performance. To address these issues, this paper proposes a forecasting framework based on dynamic gating and semantic guidance. A semantic prefix fine-tuning module is constructed to generate prefixes from natural language task descriptions, which guide the autoregressive reasoning process. A dynamic gating mechanism subsequently modulates the injection intensity to achieve layer-wise differentiated prefix integration within the large language model, enabling more accurate time-series predictions. Figure \ref{fig_1} illustrates the overall framework of the proposed method.
+
+% todo 图片插入
+\begin{figure*}[pos=htbp]
+	\centering
+	\includegraphics[width=13cm]{pic/framework.png}
+    \caption{Overall framework of the proposed dynamic gating and semantic-guided forecasting method}
+    \label{fig_1}
+\end{figure*}
+
+At the input layer, the proposed architecture separates into a time-series processing stream and a natural language processing stream. The raw input time-series data is normalized while retaining its mean and variance. The normalized sequence is then segmented into patches and fed into a designed time-series encoder to produce vector representations compatible with the large language model. Concurrently, textual information encompassing the domain, task specifications, and statistical properties of the sequence is tokenized and embedded. These embeddings are processed by the dynamic gating and semantic prefix module to generate corresponding prefix keys and values. During the generation phase, the large language model performs autoregressive inference to predict the subsequent state, which is mapped back to continuous numerical values via a time-series decoder. This procedure iterates to yield the final forecasting sequence of the target length.
+
+% The author names and affiliations could be formatted in two ways:
+% \begin{enumerate}[(1)]
+% \item Group the authors per affiliation.
+% \item Use footnotes to indicate the affiliations.
+% \end{enumerate}
+% See the front matter of this document for examples. 
+% You are recommended to conform your choice to the journal you 
+% are submitting to.
+
+\subsection{Time-Series Data Processing}
+
+To bridge the modality gap between time series data and natural language, this paper introduces a semantic prefix-guided strategy for deep multimodal fusion. This approach incorporates a time series embedding module to map temporal data into the hidden space of the language model alongside a prefix module that generates guiding vectors from natural language task descriptions. Given the raw time series data:
+\begin{equation}
+X_{1:T}={x_1,x_2,\ldots,x_T},x_t \in \mathbb{R}^d
+\end{equation}
+where $d$ denotes the variable dimension. Because the relative variation amplitude and temporal trend are more critical than absolute magnitudes in time series analysis, we normalize the raw temporal data before subsequent processing, as formulated in Equation (\ref{eq3-2}):
+\begin{equation}
+\label{eq3-2}
+x_t^\prime=\frac{x_t-\mu\left(X_{1:T}\right)}{\sigma\left(X_{1:T}\right)}
+\end{equation}
+where $\mu(\cdot)$ and $\sigma(\cdot)$ denote the sequence mean and standard deviation respectively. After obtaining the normalized time series data, we partition it into patches for subsequent language model processing, as described in Equation (\ref{eq3-3}):
+\begin{equation}
+\label{eq3-3}
+s_i={x^{\prime}{\left(i-1\right)S+1},\ldots,x^{\prime}{iS}}\ \in \mathbb{R}^S,;i=1,\ldots,N
+\end{equation}
+where $x^\prime$ represents the normalized observation at a specific historical step. Each $s_i$ encompasses all normalized data points within the current patch from the starting timestamp $\left(i-1\right)S+1$ to the ending timestamp $iS$, with $N$ representing the total number of patches. This patching mechanism captures local temporal variations and significantly reduces the number of iteration steps required for autoregressive prediction, which improves the overall inference efficiency. Each resulting time patch $s_i$ functions as a minimal temporal semantic unit. A numeric encoder projects these units into fixed-dimensional token embeddings via $e_i^{\mathrm{ts}}=Encoder\left(s_i\right)$, ensuring that the language model can correctly process the temporal input. The sequence of time series tokens is thus represented as:
+\begin{equation}
+E^{\mathrm{ts}}={e_1^{\mathrm{ts}},e_2^{\mathrm{ts}},\ldots,e_N^{\mathrm{ts}}}
+\end{equation}
+These tokens serve as the time series input to the language model. During the autoregressive prediction phase, the model sequentially generates representations for future predictions. The aforementioned process maps the raw time series data into the latent space of the language model. Following autoregressive inference, an additional decoder reconstructs the feature vectors output by the language model back into the time series domain, as shown in Equation (\ref{eq3-5}):
+\begin{equation}
+\label{eq3-5}
+{\hat{s}}_{N+k}=\mathrm{Decoder}\left(h_{N+k}\right)
+\end{equation}
+Here, $h_{N+k}$ denotes the feature vector generated by the language model at position $N+k$, and ${\hat{s}}_{N+k}$ represents the corresponding temporal prediction. We then apply an inverse transformation using the mean $\mu$ and standard deviation $\sigma$ recorded during the input stage to restore the original data magnitude, which completes a single step of prediction.
+
+\subsection{Natural Language Data Processing}
+
+The most significant advantage of large language models lies in their embedded world knowledge and robust reasoning generalization, which primarily manifest in natural language understanding and generation tasks. To transfer these capabilities to time series forecasting, conventional approaches simply concatenate natural language prompts with numerical sequences at the input layer. This shallow integration struggles to influence the deep attention distribution within the Transformer architecture.
+
+The core concept of traditional prefix tuning in large language models involves inserting learnable embeddings between Transformer layers without altering the original model parameters. Distinct from static prompt injection, this method provides persistent guidance by incorporating task specific information into the attention computation at each layer to achieve efficient domain adaptation. Compared to parameter optimization techniques such as full fine tuning or LoRA, this approach presents clear advantages. It eliminates the reliance on high quality fine tuning datasets and preserves the pre-trained general knowledge and generalization capabilities of the language model by keeping its parameters frozen. Task adaptation is accomplished through a straightforward concatenation operation during the inference phase to maintain low computational overhead.
+
+Applying traditional prefix tuning directly to forecasting tasks that deeply integrate textual information and time series data reveals evident limitations. First, time series data in complex forecasting scenarios exhibits high dynamics and volatility, where different time windows and segmentations often carry distinct evolutionary patterns. Second, identical textual information exerts varying semantic influences on different time series sources. For instance, the same ambient temperature setting implies opposite operating scenarios for the indoor and outdoor units of an air conditioning system. These factors render traditional static prefix tuning inadequate, as switching tasks requires generating a unique set of static prefix vectors for each variable, making maintenance highly difficult. Directly utilizing fixed length prefix vectors to learn continuous high dimensional semantic representations also struggles to genuinely capture the natural language text. This inadequate representation may disrupt the computations within the hidden space rather than effectively guiding the attention distribution inside the language model.
+
+To overcome these challenges and achieve a deep fusion of textual information and time series data for comprehensive forecasting guidance, this paper proposes an innovative temporal semantic prefix tuning method. By dynamically adjusting the attention structure at the hidden space level during the processing of natural language inputs, this approach ensures a profound integration of task semantics and temporal data.
+
+Translating common time series datasets directly into natural language presents substantial difficulties, as excessive text length and the loss of mathematical statistical information hinder practical application. Recent research indicates that other data modalities such as images can serve seamlessly as prompts, provided that they supply the language model with necessary domain knowledge, statistical properties, and task instructions. Inspired by these findings, this paper introduces a structured prompt template to provide a comprehensive summary of the time series dataset, encompassing the data domain, task objectives, and statistical characteristics.
+\begin{figure}[pos=ht]
+    \centering
+    \includegraphics[width=8cm]{pic/prompt.png}
+    \caption{Illustration of the structured prompt}
+    \label{fig3_2}
+\end{figure}
+Figure \ref{fig3_2} illustrates the structured prompt template for the ETTh1 dataset. This template requires specifying the domain information of the dataset, the lengths of the input and expected output sequences for the forecasting task, and the statistical information derived from the time series data, which includes the minimum, maximum, median, and overall trend. The inclusion of statistical information assists the language model in establishing a clearer mathematical comprehension of the data distribution.
+
+For all potential time series forecasting tasks, the proposed method prioritizes populating the domain information during initialization and utilizes scripts to compute the corresponding statistical data for template filling. Consequently, when executing the language model for the forecasting task, users only need to provide the input and prediction sequence lengths. The semantic injection is accomplished directly through the template to avoid any complex prompt rewriting procedures.
+
+To accommodate a broader range of time series forecasting tasks, the content populated within the structured prompt varies according to the dataset, resulting in fluctuating prompt lengths. To adapt to this dynamic variation, the proposed method employs an MLP-based reparameterization technique to generate corresponding prefixes from different structured prompts. Since the MLP cannot process natural language text directly, the method first tokenizes the text using the tokenizer of the language model and maps it into embeddings. This process yields a semantic vector of uniform dimensions, which facilitates the subsequent MLP reparameterization training. Equation (\ref{eq3-6}) details this procedure:
+\begin{equation}
+\label{eq3-6}
+E^{sem}=Embed\left(Tokenizer\left(prompt\right)\right)\in R^{\left(M\times d_{model}\right)}
+\end{equation}
+The embedded sequence $E^{sem}$ aligns with the language model dimension $d_{model}$. The token count $M$ remains variable, and the forecasting task requires an overall semantic context to guide the model on how to focus on the time series data rather than a fine grained token-to-token alignment for every word in the text. A global pooling operation is therefore applied to $E^{sem}$ as shown in Equation (\ref{eq3-7}):
+\begin{equation}
+\label{eq3-7}
+\bar{e}^{\text{sem}} = \frac{1}{M} \sum_{i=1}^{M} e_i^{\text{sem}}
+\end{equation}
+The aforementioned operation filters out grammatical noise in the text and retains the core semantic information. After obtaining the pooled global semantic vector, the method considers deep prefix tuning injection. An additional prefix tuning module is trained specifically for the $K$ and $V$ matrices of the language model, as expressed in Equation (\ref{eq3-8}):
+\begin{equation}
+\label{eq3-8}
+P = \mathrm{MLP}\phi \left( \bar{e}^{\text{sem}} \right)
+\end{equation}
+Here, $P\in \mathbb{R}^{n_p\times d_{\mathrm{model}}}$, where $n_p$ denotes the configurable number of prefix tokens, and the MLP serves as the semantic prefix tuning module. Analyzing the attention computation theory reveals that the deep conditional prefix tuning proposed in this paper is injected into the $K$ and $V$ matrices at each layer of the language model. Injecting prefixes into these matrices means that during the attention computation, the Query interacts with Keys and Values that contain additional semantic prefix information, making the attention allocation subject to semantic influences. In the original Transformer architecture, the attention computation for the $l$-th layer is defined as:
+\begin{equation}{\mathrm{Attn}}\left(Q,K,V\right)=softmax\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+\end{equation}
+After introducing the semantic prefixes, the Key and Value at the $l$-th layer are expanded as follows:
+\begin{equation}{\widetilde{K}}^{\left(l\right)}=\left[K^{\left(l\right)};P_K^{\left(l\right)}\right],\ \ {\widetilde{V}}^{\left(l\right)}=\left[V^{\left(l\right)};P_V^{\left(l\right)}\right]
+\end{equation}
+where $P_K^{\left(l\right)}$ and $P_V^{\left(l\right)}$ are the linear projections from the trained conditional prefix tuning MLP, and $[\cdot;\cdot]$ denotes the concatenation operation along the sequence length dimension. The final attention formulation becomes:
+\begin{equation}
+{\mathrm{Attn}}^{\left(l\right)}\left(Q,{\widetilde{K}}^{\left(l\right)},{\widetilde{V}}^{\left(l\right)}\right)=\mathrm{softmax}\left(\frac{Q^{\left(l\right)}\left({\widetilde{K}}^{\left(l\right)}\right)^\top}{\sqrt{d_k}}\right){\widetilde{V}}^{\left(l\right)}
+\end{equation}
+where ${\widetilde{K}}^{\left(l\right)}$ and ${\widetilde{V}}^{\left(l\right)}$ incorporate the semantic guidance prefixes dynamically generated from the temporal statistical features and semantic information.Further decomposition of this attention formula yields Equation (\ref{eq3-12}) and the subsequent equation:
+\begin{equation}
+\label{eq3-12}
+\left[w_p,w_c\right]=softmax\left(\left[\frac{QP_K^\top}{\sqrt{d_k}},\frac{QK^\top}{\sqrt{d_k}}\right]\right)
+\end{equation}
+
+\begin{equation}
+{\mathrm{Attn}}=w_pP_V+w_cV
+\end{equation}
+From these two equations, $w_p$ represents the weight assigned to the semantic guidance prefix, and $w_c$ represents the original attention weight. This decomposition clearly illustrates the impact of the injected semantic guidance prefix on the attention distribution. After the softmax operation, the sum of the weights for the semantic guidance prefix and the original time series is exactly one. The attention mechanism then allocates these weights to the semantic prefix component and the temporal content component. Figure \ref{fig3_3} details this flow process.
+\begin{figure}[pos=ht]
+    \centering
+    \includegraphics[width=8cm]{pic/kv.png}
+    \caption{Computation of the attention mechanism guided by semantic prefixes}
+    \label{fig3_3}
+\end{figure}
+The attention output can essentially be viewed as the scaled original attention component combined with prefix content that acts as a dynamic bias. Its representation undergoes dynamic adjustment based on the matching degree between the current Query and $P_K$. Injecting information in this manner permits dynamic adjustments within the hidden space to facilitate a deep interaction between task semantics and time series data. However, if the same prefix is injected into every Transformer layer with the same strength, the method would still suffer from the uniform-intervention problem discussed in the Introduction. We therefore introduce an explicit dynamic gating module to control when and how strongly the semantic prefix should be injected.
+
+\subsection{Dynamic Gating and Analytical Motivation}
+The dynamic gating module assigns an injection coefficient to each Transformer layer and each input sample. Let $c(X)$ denote the statistical descriptor of the input sequence, including the minimum, maximum, median, mean, standard deviation, and a least-squares trend slope. This descriptor is concatenated with the pooled semantic vector $\bar{e}^{\mathrm{sem}}$ to form an input-dependent context vector:
+\begin{equation}
+\label{eq:gate_context}
+z(X)=\left[\bar{e}^{\mathrm{sem}};c(X)\right].
+\end{equation}
+For the $l$-th Transformer layer, we define a learnable layer-wise prior gate and an input-dependent dynamic gate as follows:
+\begin{equation}
+\label{eq:gate_static_dynamic}
+\alpha_l=\sigma(a_l),\quad
+\beta_l(X)=\sigma\left(\frac{u_l^{\top}z(X)+b_l}{\tau}\right),
+\end{equation}
+where $a_l$, $u_l$, and $b_l$ are trainable parameters, $\sigma(\cdot)$ is the Sigmoid function, and $\tau$ is the temperature coefficient. The final semantic injection intensity is obtained by
+\begin{equation}
+\label{eq:gate_final}
+\gamma_l(X)=\alpha_l\beta_l(X),\quad 0\leq \gamma_l(X)\leq 1.
+\end{equation}
+Thus, the gated Key/Value prefix injection at layer $l$ becomes
+\begin{equation}
+\label{eq:gated_kv}
+\widetilde{K}^{(l)}_{\gamma}=\left[K^{(l)};\gamma_l(X)P_K^{(l)}\right],\quad
+\widetilde{V}^{(l)}_{\gamma}=\left[V^{(l)};\gamma_l(X)P_V^{(l)}\right].
+\end{equation}
+In implementation, $\gamma_l(X)$ is broadcast to all prefix tokens and attention heads in the corresponding layer. This design separates two factors that are conflated in ordinary prefix tuning: $\alpha_l$ captures the general preference of a layer for semantic intervention, while $\beta_l(X)$ adjusts the intervention strength according to the temporal complexity of the current sample. Therefore, shallow layers can retain local temporal patterns when semantic guidance is not needed, whereas deeper layers can receive stronger task-level semantic calibration when the sequence exhibits long-range or non-stationary structure.
+
+The gating formulation also clarifies why the proposed mechanism can reduce unnecessary perturbation rather than merely adding extra parameters. Denote the attention output without prefix injection as $\mathrm{Attn}^{(l)}_0$ and the gated-prefix output as $\mathrm{Attn}^{(l)}_{\gamma}$. Under the standard bounded-activation assumption for $Q$, $K$, $V$, $P_K$, and $P_V$, the Lipschitz continuity of the softmax operation implies that there exists a layer-dependent constant $C_l$ such that
+\begin{equation}
+\label{eq:perturb_bound}
+\left\|\mathrm{Attn}^{(l)}_{\gamma}-\mathrm{Attn}^{(l)}_0\right\|
+\leq C_l\gamma_l(X)\left(\left\|P_K^{(l)}\right\|+\left\|P_V^{(l)}\right\|\right).
+\end{equation}
+This inequality is used as an analytical motivation rather than as a separate theoretical theorem: the prefix-induced deviation is explicitly scaled by $\gamma_l(X)$. When the semantic prefix is weakly relevant to the current layer or sample, the gate decreases the prefix contribution and limits the perturbation to the original temporal attention path.
+
+Similarly, for the prefix-generation parameters $\phi$, the dominant gradient component can be written in the form
+\begin{equation}
+\label{eq:gradient_gate}
+\frac{\partial \mathcal{L}}{\partial \phi}
+=\sum_{l=1}^{L}\gamma_l(X)G_l\frac{\partial P^{(l)}}{\partial \phi}+\Delta_{\gamma},
+\end{equation}
+where $G_l$ denotes the loss gradient passed from layer $l$ to its prefix representation, and $\Delta_{\gamma}$ denotes the gradient term through the gating network. Equation (\ref{eq:gradient_gate}) shows that irrelevant layers do not contribute equally to prefix optimization. Instead, their gradient influence is down-weighted by the learned gate, which helps avoid unstable updates caused by uniform semantic injection across all layers.
+
+By introducing the semantic prefix tuning module, the dynamic gating module, and the hidden-space mapping of time series data achieved through the Encoder and Decoder modules, this paper employs an end-to-end joint training strategy. This strategy ensures coordinated optimization among the semantic prefix tuning module, the time-series embedding module, and the gating module while keeping the core language model frozen. For this forecasting task, the training objective focuses primarily on minimizing the discrepancy between the predicted sequence and the actual observations. The global loss function is defined as shown in Equation (\ref{eq3-14}):
+\begin{equation}
+\label{eq3-14}
+\mathcal{L}=\frac{1}{T}\sum_{i=1}^{T}|\widehat{y}_i-y_i|^2
+\end{equation}
+where $\widehat{y}_i$ represents the time series value predicted by the model, $y_i$ is the true observation, and $T$ denotes the forecasting time step. During the training process, the parameters of the language model itself remain frozen. The gradients propagate backward through the loss function to exclusively update the semantic prefix guidance module and the time series encoding module. This approach achieves precise adaptation to the time series task while preserving the generalization capabilities of the model.
+
+\section{Experiments}
+In this section, the performance of the LLM-based time series forecasting algorithm guided by dynamic gating and semantic prefixes is evaluated through extensive experiments. To verify its generalization ability across various forecasting scenarios, comprehensive benchmarking is conducted on both long-term and short-term tasks. Furthermore, the effectiveness of the proposed dynamic gating and semantic prefixes is quantified through ablation studies.
+
+\subsection{Setting}
+To evaluate the effectiveness of the proposed algorithm rigorously, this paper conducts experiments on two representative forecasting tasks, namely long-term and short-term prediction.
+
+For long-term forecasting, we utilize four widely recognized real-world datasets, including the Electricity Transformer Temperature (ETTh1) dataset \citep{zhou2021informerefficienttransformerlong}, the Electricity Consumption Load (ECL) dataset \citep{wu2021autoformer}, and the Traffic and Weather datasets which respectively cover traffic flow and meteorological observations \citep{wu2021autoformer}. The training, validation, and testing split for the ETTh1 dataset is set to 6:2:2, while the ratio for the ECL, Traffic, and Weather datasets is 7:1:2. Following standard evaluation protocols, the primary metrics for long-term forecasting are Mean Squared Error (MSE) and Mean Absolute Error (MAE).
+
+For short-term forecasting, we employ the M4 competition dataset \citep{makridakis2020m4}, which serves as a benchmark for evaluating prediction robustness. This dataset contains 100,000 time series from diverse domains such as business, finance, and demographics, with sampling frequencies ranging from annual to hourly. Its large scale and diverse patterns provide a rigorous test for the fundamental forecasting capabilities of the model. Consistent with standard practices, short-term forecasting is assessed using three key metrics: Symmetric Mean Absolute Percentage Error (sMAPE), Mean Absolute Scaled Error (MASE), and Overall Weighted Average (OWA).
+
+For the proposed time series forecasting algorithm based on dynamic gating and semantic prefix guidance, GPT-2 is selected as the default backbone model. This choice aligns with a significant body of research that utilizes GPT-2 as a foundational architecture for time series forecasting tasks. Baseline results are obtained either by running publicly available implementations under the same data split and prediction lengths or by directly following the values reported in the corresponding publications when official code or full training details are unavailable.
+
+The proposed model and the reproduced baselines are conducted under a unified hardware and software configuration. The hardware setup includes two NVIDIA 3090 GPUs, each with 24GB of memory. We implement the models using the PyTorch framework and employ mixed-precision training and inference. The Adam optimizer is used for training. The learning rate for parameters associated with semantic prefixes, dynamic gates, and other basic components is $1e-4$, while the learning rate for the encoder-decoder module is $5e-4$. The large language model remains frozen throughout the process. A weight decay of $1e-5$ is applied to prevent overfitting, and the default number of training epochs is 10. The validation set is used to select the final checkpoint, and all runs of the proposed model use a fixed random seed to reduce implementation-level variance. Because some baselines are literature-reported point estimates without run-level variance, we do not claim formal statistical significance over all compared methods; instead, the experiments are interpreted as a standardized empirical comparison under the common forecasting protocol.
+
+\subsection{Long-Term Forecasting Experiments and Analysis}
+Table \ref{tab:long_term_forecasting} presents a detailed comparison of long-term forecasting performance between the proposed time series forecasting algorithm, which relies on dynamic gating and semantic prefix guidance, and current mainstream baselines across four real-world datasets (ETTh1, ECL, Weather, and Traffic). The experiments include four prediction lengths $T \in \{96, 192, 336, 720\}$ to comprehensively evaluate model stability and accuracy over various time horizons. Overall, the proposed method achieves state-of-the-art or highly competitive performance under most experimental settings. The bold values indicate the optimal results, confirming the effectiveness of injecting semantic information via dynamic gating for time series forecasting.
+
+\begin{table*}[pos=ht]
+    \centering
+    \caption{Comparison of long-term forecasting performance across multiple datasets}
+    \setlength{\tabcolsep}{3pt}
+    \resizebox{\linewidth}{!}{
+    \begin{tabular}{llcccccccccccccccccc}
+    \toprule
+    \multirow{2}{*}{Dataset} & \multirow{2}{*}{Prediction Length} & \multicolumn{2}{c}{Ours} & \multicolumn{2}{c}{TimeLLM} & \multicolumn{2}{c}{UniTime} & \multicolumn{2}{c}{FPT} & \multicolumn{2}{c}{iTrans.} & \multicolumn{2}{c}{DLinear} & \multicolumn{2}{c}{PatchTST} & \multicolumn{2}{c}{AutoTimes} \\
+    \cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10} \cmidrule(lr){11-12} \cmidrule(lr){13-14} \cmidrule(lr){15-16} \cmidrule(lr){17-18}
+    & & MSE & MAE & MSE & MAE & MSE & MAE & MSE & MAE & MSE & MAE & MSE & MAE & MSE & MAE & MSE & MAE \\
+    \midrule
+    \multirow{5}{*}{ETTh1}
+    & 96  & 0.361 & \textbf{0.392} & 0.380 & 0.412 & 0.386 & 0.409 & 0.377 & 0.404 & 0.387 & 0.418 & 0.369 & 0.400 & 0.374 & 0.401 & \textbf{0.360} & 0.398 \\
+    & 192 & 0.394 & \textbf{0.413} & 0.408 & 0.431 & 0.639 & 0.577 & 0.412 & 0.426 & 0.416 & 0.437 & 0.405 & 0.422 & 0.405 & 0.422 & \textbf{0.392} & 0.420 \\
+    & 336 & 0.414 & \textbf{0.425} & 0.425 & 0.443 & 0.814 & 0.680 & 0.440 & 0.444 & 0.434 & 0.450 & 0.435 & 0.445 & 0.423 & 0.435 & \textbf{0.410} & 0.432 \\
+    & 720 & \textbf{0.416} & \textbf{0.441} & 0.434 & 0.463 & 0.891 & 0.719 & 0.488 & 0.483 & 0.447 & 0.473 & 0.493 & 0.508 & 0.434 & 0.460 & 0.429 & 0.452 \\
+    & Avg & \textbf{0.396} & \textbf{0.417} & 0.412 & 0.437 & 0.683 & 0.596 & 0.429 & 0.439 & 0.421 & 0.445 & 0.426 & 0.444 & 0.409 & 0.430 & 0.398 & 0.426 \\
+    \midrule
+    \multirow{5}{*}{ECL}
+    & 96  & \textbf{0.129} & \textbf{0.225} & 0.137 & 0.244 & 0.171 & 0.266 & 0.137 & 0.236 & 0.133 & 0.229 & 0.138 & 0.238 & 0.132 & 0.232 & 0.140 & 0.236 \\
+    & 192 & \textbf{0.140} & \textbf{0.237} & 0.158 & 0.266 & 0.293 & 0.378 & 0.158 & 0.258 & 0.151 & 0.245 & 0.152 & 0.251 & 0.151 & 0.250 & 0.159 & 0.253 \\
+    & 336 & \textbf{0.161} & \textbf{0.255} & 0.183 & 0.292 & 0.379 & 0.448 & 0.181 & 0.285 & 0.168 & 0.262 & 0.167 & 0.268 & 0.171 & 0.272 & 0.177 & 0.270 \\
+    & 720 & \textbf{0.199} & \textbf{0.288} & 0.247 & 0.348 & 0.455 & 0.502 & 0.258 & 0.355 & 0.205 & 0.294 & 0.203 & 0.302 & 0.222 & 0.318 & 0.216 & 0.303 \\
+    & Avg & \textbf{0.157} & \textbf{0.251} & 0.181 & 0.288 & 0.325 & 0.399 & 0.184 & 0.284 & 0.164 & 0.258 & 0.165 & 0.265 & 0.169 & 0.268 & 0.173 & 0.266 \\
+    \midrule
+    \multirow{5}{*}{Weather}
+    & 96  & \textbf{0.149} & \textbf{0.198} & \textbf{0.149} & 0.200 & 0.180 & 0.223 & 0.154 & 0.205 & 0.174 & 0.225 & 0.169 & 0.229 & \textbf{0.149} & 0.202 & 0.158 & 0.208 \\
+    & 192 & 0.195 & \textbf{0.242} & \textbf{0.193} & 0.243 & 0.450 & 0.451 & 0.196 & 0.243 & 0.227 & 0.268 & 0.211 & 0.268 & 0.194 & 0.245 & 0.207 & 0.254 \\
+    & 336 & 0.248 & 0.283 & \textbf{0.243} & 0.284 & 0.594 & 0.570 & 0.244 & \textbf{0.282} & 0.290 & 0.309 & 0.258 & 0.306 & 0.244 & 0.285 & 0.262 & 0.298 \\
+    & 720 & 0.321 & \textbf{0.335} & \textbf{0.315} & 0.336 & 0.618 & 0.593 & 0.318 & \textbf{0.335} & 0.374 & 0.360 & 0.320 & 0.362 & 0.317 & 0.338 & 0.342 & 0.353 \\
+    & Avg & 0.228 & \textbf{0.265} & \textbf{0.225} & 0.266 & 0.461 & 0.459 & 0.228 & 0.266 & 0.266 & 0.291 & 0.239 & 0.291 & 0.226 & 0.268 & 0.242 & 0.278 \\
+    \midrule
+    \multirow{5}{*}{Traffic}
+    & 96  & \textbf{0.336} & \textbf{0.236} & 0.376 & 0.280 & 0.438 & 0.291 & 0.395 & 0.283 & 0.353 & 0.259 & 0.399 & 0.285 & 0.359 & 0.255 & 0.369 & 0.257 \\
+    & 192 & \textbf{0.361} & \textbf{0.258} & 0.397 & 0.294 & 0.538 & 0.353 & 0.425 & 0.302 & 0.373 & 0.267 & 0.409 & 0.290 & 0.377 & 0.265 & 0.394 & 0.268 \\
+    & 336 & \textbf{0.375} & \textbf{0.261} & 0.420 & 0.311 & 0.621 & 0.389 & 0.463 & 0.328 & 0.386 & 0.275 & 0.422 & 0.297 & 0.393 & 0.276 & 0.413 & 0.278 \\
+    & 720 & \textbf{0.410} & \textbf{0.280} & 0.448 & 0.326 & 0.737 & 0.435 & 0.560 & 0.392 & 0.425 & 0.296 & 0.461 & 0.319 & 0.436 & 0.305 & 0.449 & 0.299 \\
+    & Avg & \textbf{0.371} & \textbf{0.259} & 0.410 & 0.303 & 0.584 & 0.367 & 0.461 & 0.326 & 0.384 & 0.274 & 0.423 & 0.298 & 0.391 & 0.275 & 0.406 & 0.276 \\
+    \bottomrule
+    \end{tabular}}
+    \label{tab:long_term_forecasting}
+\end{table*}
+
+Compared with baseline methods that also rely on large language models, such as TimeLLM, UniTime, and FPT, the proposed model achieves superior prediction performance. On the Traffic dataset, the average MSE of the proposed method decreases to 0.371, which is an improvement of approximately 9.5\% over TimeLLM and yields an even more significant margin against UniTime. The fundamental reason for this performance gap stems from how each model explores the capabilities of large language models. Although UniTime and FPT utilize LLMs, they frequently encounter semantic alignment difficulties during cross-domain transfer, which easily leads to task comprehension bias or distribution shifts in domain-specific long-term forecasting. TimeLLM introduces the reprogramming concept, yet its prefix prompts remain mostly static and are typically restricted to the input layer. In contrast, the proposed approach provides the language model with more effective information through semantic guidance and dynamic gating mechanisms. The dynamic gating mechanism adaptively regulates the injection strength of semantic prefixes within the Key/Value matrices of each layer, according to the varying dependence of different network layers on semantic information and the complexity of individual samples. This deep and dynamic fusion strategy ensures that the model continuously receives semantic calibration during the deeper reasoning stages, thereby demonstrating a clear advantage in complex forecasting scenarios involving traffic, electricity loads, and weather.
+
+When comparing against non-LLM deep learning models specifically designed for time series, such as PatchTST and iTransformer, the proposed method continues to demonstrate robust performance. PatchTST establishes a stringent performance benchmark through its channel independence and patching mechanisms. However, on datasets with strong semantic features like ECL and Traffic, where clear periodic patterns coexist with abrupt changes, the proposed method surpasses PatchTST in the longest 720-step forecasting setting. For instance, in the 720-step prediction on the ECL dataset, the MSE of the proposed method decreases to 0.199, outperforming the 0.222 achieved by PatchTST. While traditional deep models effectively extract statistical features of time series using complex network architectures, the general world knowledge and reasoning capabilities embedded within large language models enable them to capture evolutionary patterns that purely numerical models frequently overlook, provided they receive structured semantic guidance.
+
+Ultra-long-term forecasting, such as the 720-step setting, serves as a crucial indicator of model stability. Across the four evaluated datasets, the forecasting error of all models inevitably exhibits an upward trend as the prediction horizon extends. It should be emphasized that MSE and MAE are error metrics, and lower absolute values indicate better forecasting accuracy. Therefore, our long-horizon conclusion is based primarily on the absolute error level at each horizon and the average error across horizons, rather than solely on the relative percentage increase from 96 to 720. On the Traffic dataset, the proposed method achieves lower MSE than TimeLLM at all four horizons, with values of 0.336, 0.361, 0.375, and 0.410 compared with 0.376, 0.397, 0.420, and 0.448. The average MSE is also reduced from 0.410 to 0.371. Although the relative increase from 96 to 720 is not smaller for the proposed method because it starts from a lower 96-step error, the absolute error gap remains stable across the forecasting range: the proposed method is lower by 0.040 at the 96-step horizon and by 0.038 at the 720-step horizon. This result indicates that the proposed model maintains a consistently lower error level under long-horizon extrapolation. Specifically, the semantic prefix, which integrates domain knowledge, task objectives, and statistical features, acts as a semantic anchor during the deep stages of autoregressive generation. As the guiding efficacy of historical temporal information diminishes over extended distances and noise enters the input sequence through recursively fed predictions, semantic prefixes regulated by dynamic gating continuously calibrate the attention distribution. This mechanism helps alleviate semantic drift and error accumulation in long-term predictions.
+
+On the Weather dataset, the proposed method yields only a marginal improvement over TimeLLM for the 96-step prediction window. Because weather data inherently contains substantial random noise and its semantic patterns resist precise description via structured text, the performance gain provided by semantic guidance faces natural limitations. Despite this, the proposed method maintains a forecasting accuracy comparable to the best-performing baselines. This outcome indirectly validates the lower-bound guarantee provided by the dynamic gating mechanism. When the auxiliary benefit of semantic information becomes weak, the mechanism adaptively reduces the prefix injection strength to strictly prevent any interference with the original temporal features.
+% There are various bibliography styles available. You can select the
+% style of your choice in the preamble of this document. These styles are
+% Elsevier styles based on standard styles like Harvard and Vancouver.
+% Please use Bib\TeX\ to generate your bibliography and include DOIs
+% whenever available.
+
+% Here are two sample references: 
+% See \citept{Fortunato2010}. Also refer \citept{Fortunato2010,NewmanGirvan2004}.
+% More citations are here \citepp{Fortunato2010,Vehlowetal2013}.
+
+\subsection{Short-Term Forecasting Experiments and Analysis}
+
+Table \ref{tab:m4_short_term_comparison} presents a detailed comparison of short-term forecasting performance on the M4 dataset between the proposed time series forecasting algorithm based on dynamic gating and semantic prefix guidance and eight mainstream baseline models. The M4 dataset contains 100,000 real-world time series from various domains. These series feature short time spans, diverse sampling frequencies, and a lack of long-term historical observations. Such a data distribution demands rapid adaptation, noise robustness, and generalization reasoning capabilities within limited contexts. Based on the average performance across all metrics, the proposed method achieves comprehensive and significant state-of-the-art results. For the three core evaluation metrics, namely Symmetric Mean Absolute Percentage Error (SMAPE), Mean Absolute Scaled Error (MASE), and Overall Weighted Average (OWA), the method attains excellent scores of 12.000, 1.606, and 0.862, respectively. Compared to the best-performing traditional deep learning baseline FEDformer and the large language model-based algorithm TimeLLM, the proposed approach achieves a substantial error reduction on the critical OWA metric. This demonstrates that in short-term forecasting tasks lacking sufficient long sequences for pattern learning, utilizing general world knowledge pre-trained by large language models and providing precise guidance through dynamic gated semantic prefixes yields stronger cross-domain generalization capabilities than models relying solely on numerical feature extraction. Bold values in the table indicate optimal results, and underlined values represent suboptimal results.
+
+\begin{table}[pos=h]
+    \caption{Short-term forecasting performance comparison of different methods on the M4 dataset}
+    \setlength{\tabcolsep}{2pt}
+\resizebox{\columnwidth}{!}{%
+
+    \begin{tabular}{c|c|cccccccc}
+    \toprule
+    Method & Metric & \textbf{Ours} & AutoFormer & DLinear & FiLM & iTransformer & Informer & FEDformer & TimeLLM \\
+    \midrule
+    \multirow{3}{*}{Yearly}
+    & SMAPE & \textbf{13.506} & 20.900 & 15.913 & 15.850 & 19.762 & 16.717 & 15.347 & \underline{15.318} \\
+    & MASE  & 3.013 & 3.741 & 2.755 & 2.724 & 3.506 & 2.919 & \underline{2.703} & \textbf{2.679} \\
+    & OWA   & \textbf{0.792} & 1.138 & 0.873 & 0.846 & 1.071 & 0.899 & 0.829 & \underline{0.825} \\
+    \midrule
+    \multirow{3}{*}{Quarterly}
+    & SMAPE & \textbf{10.166} & 14.913 & \underline{10.817} & 11.054 & 11.659 & 15.664 & 11.223 & 10.942 \\
+    & MASE  & \textbf{1.190} & 1.745 & \underline{1.203} & 1.291 & 1.330 & 1.911 & 1.292 & 1.229 \\
+    & OWA   & \textbf{0.895} & 1.324 & \underline{0.949} & 0.981 & 1.022 & 1.421 & 0.989 & 0.952 \\
+    \midrule
+    \multirow{3}{*}{Monthly}
+    & SMAPE & \textbf{12.916} & 18.023 & 13.448 & \underline{13.436} & 16.653 & 18.750 & 14.129 & 13.628 \\
+    & MASE  & \textbf{0.954} & 1.715 & 1.191 & \underline{1.190} & 1.547 & 1.810 & 1.273 & 1.227 \\
+    & OWA   & \textbf{0.896} & 1.331 & 1.014 & \underline{0.956} & 1.215 & 1.395 & 1.014 & 0.978 \\
+    \midrule
+    \multirow{3}{*}{Others}
+    & SMAPE & 5.083 & 4.851 & 5.259 & 5.008 & \underline{4.040} & 5.066 & \textbf{3.442} & 4.795 \\
+    & MASE  & 3.394 & 4.756 & 3.608 & 3.443 & 3.763 & 4.820 & \underline{3.259} & \textbf{3.178} \\
+    & OWA   & 1.070 & 1.469 & 1.122 & 1.070 & 1.192 & 1.511 & \underline{1.024} & \textbf{1.006} \\
+    \midrule
+    \multirow{3}{*}{Average}
+    & SMAPE & \textbf{12.000} & 17.053 & 12.507 & 13.115 & 14.528 & 17.763 & \underline{12.412} & 12.766 \\
+    & MASE  & \textbf{1.606} & 4.208 & 2.813 & 3.696 & 3.265 & 6.172 & \underline{2.810} & 2.855 \\
+    & OWA   & \textbf{0.862} & 1.462 & 1.062 & 1.177 & 1.200 & 1.768 & \underline{1.029} & 1.056 \\
+    \bottomrule
+    \end{tabular}
+}
+
+    \label{tab:m4_short_term_comparison}
+\end{table}
+
+Following the official M4 evaluation convention, the ``Others'' category aggregates heterogeneous high-frequency subsets, including weekly, daily, and hourly series. The category-level and overall rows should therefore be interpreted as benchmark-level aggregate results rather than as simple arithmetic averages over homogeneous frequencies. This clarification is important because the semantic information available for the ``Others'' group is less uniform than that for yearly, quarterly, or monthly series.
+
+Examining specific sampling frequency categories reveals that the proposed method possesses significant advantages in quarterly and monthly forecasting tasks characterized by structured periodic features. For quarterly data, the method ranks first in SMAPE, MASE, and OWA, substantially outperforming baselines such as DLinear and TimeLLM. It similarly achieves optimal results across all three metrics on monthly data, with MASE reaching as low as 0.954. Quarterly and monthly data typically represent seasonal and periodic patterns, such as macroeconomic trends, commercial sales, or meteorological changes, which are easy to describe using natural language. The structured semantic prompts designed in this work accurately capture these macro-level semantic contexts. The dynamic gating mechanism efficiently activates semantic injection within deep networks, enabling large language models to align complex numerical fluctuations with real-world macro-periodic knowledge. This achieves forecasting accuracy far exceeding that of traditional numerical models.
+
+In the forecasting of yearly data, the proposed method obtains the best results in SMAPE (13.506) and OWA (0.792), though it slightly trails TimeLLM and FEDformer in the MASE metric (3.013). Yearly data typically contain very few sampling points and extremely short sequences, with trends often exhibiting gentle linear or simple nonlinear changes. The proposed method accurately captures the overall evolutionary direction, leading to excellent performance in SMAPE and the comprehensive OWA metric. However, the introduction of rich semantic prefixes may cause large language models to generate additional reasoning beyond local numerical values or over-smoothing on extremely short sequences. This prevents the model from achieving optimal point-wise scalable absolute errors. This phenomenon indirectly reflects a slight interference effect that semantic guidance might introduce on extremely sparse data.
+
+In the Others category, which includes high-frequency sampled data such as hourly and weekly series, the performance of the proposed method shows certain limitations compared to FEDformer and TimeLLM. High-frequency time series frequently involve severe random noise and local minor abrupt changes. The structured prompts based on domains and basic statistics struggle to comprehensively describe the microscopic semantics of such high-frequency oscillations. When processing high-frequency data, the dynamic gating mechanism may fail to effectively align global macro-level semantics with high-frequency local noise, adaptively reducing the intensity of prefix injection. This prevents the advantages of the model from being fully realized on such data. The proposed dynamic gating and semantic prefix guidance mechanism performs exceptionally well in the vast majority of short-term forecasting tasks, demonstrating breakthrough improvements on periodic data with clear real-world significance. It also objectively identifies room for improvement when the model processes purely high-frequency data lacking significant semantic patterns.
+
+\subsection{Scalability Analysis}
+To evaluate the scalability of the proposed algorithm across different model sizes, this section compares the performance of time series forecasting models using Large Language Models (LLMs) with varying parameter scales as backbones. The evaluation is conducted on four standard multivariate time series datasets, namely ETTh1, ECL, Weather, and Traffic. The selected models range from the lightweight GPT-2 to the medium-scale OPT series (350M and 1.3B) and the LLaMA-7B model. Table \ref{tab:scalability_comparison} summarizes the results.
+
+\begin{table}[pos=ht]
+    \centering
+    \caption{Performance comparison across different LLM backbones and datasets.}
+    \label{tab:scalability_comparison}
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{lcccccccc}
+    \toprule
+    LLM & \multicolumn{2}{c}{GPT-2 (124M)} & \multicolumn{2}{c}{OPT-350M} & \multicolumn{2}{c}{OPT-1.3B} & \multicolumn{2}{c}{LLaMA-7B} \\
+    \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+    Metric & MSE & MAE & MSE & MAE & MSE & MAE & MSE & MAE \\
+    \midrule
+    ETTh1   & 0.396 & 0.417 & 0.395 & 0.414 & 0.392 & 0.420 & 0.383 & 0.416 \\
+    ECL     & 0.157 & 0.251 & 0.158 & 0.263 & 0.154 & 0.248 & 0.155 & 0.243 \\
+    Weather & 0.228 & 0.265 & 0.231 & 0.273 & 0.229 & 0.263 & 0.227 & 0.264 \\
+    Traffic & 0.371 & 0.259 & 0.403 & 0.274 & 0.397 & 0.271 & 0.371 & 0.261 \\
+    \bottomrule
+    \end{tabular}
+    }
+\end{table}
+
+The experimental results indicate that, unlike the scaling laws characteristic of natural language processing, increasing the parameter size of the base language model for purely numerical time series forecasting does not result in a linear reduction in error that justifies the additional computational cost. GPT-2, which has the smallest parameter count, exhibits high efficiency and strong baseline performance. For example, it achieves Mean Squared Errors (MSE) of 0.396 and 0.157 on the ETTh1 and ECL datasets, respectively, while LLaMA-7B yields 0.383 and 0.155. The marginal reduction in MSE suggests that lightweight language models provide sufficient representation capacity for extracting basic temporal dependencies. These findings imply that smaller models are a cost-effective choice for implementing the proposed algorithm, while the consistent performance improvements observed in larger models further demonstrate that the algorithm remains effective as the model scale increases.
+
+\subsection{Ablation Study and Analysis}
+
+To verify the synergistic effect of the semantic-guided prefix and the dynamic gating mechanism, we conduct ablation studies on the ETTh1 dataset (Table \ref{tab:ablation_etth1}). When retaining only the prefix mechanism, the model performs comparably to the full model in short-term forecasting horizons of 96 and 192, maintaining MSE values at approximately 0.361 and 0.394, respectively. However, as the prediction horizon extends to 336 and 720, the value of dynamic gating becomes increasingly evident. The prediction error of the full model exhibits a steady downward trend, with the most significant advantage observed at the 720 horizon. This phenomenon indicates that dynamic gating adaptively adjusts the injection strength of prefix information according to the forecasting difficulty. It effectively prevents external semantics from overly interfering with the main path during long-range reasoning, thereby improving the stability and robustness of the model in long-term forecasting.
+
+\begin{table}[pos=htbp]
+    \centering
+    \caption{Ablation study results on the ETTh1 dataset}
+    \label{tab:ablation_etth1}
+\resizebox{\columnwidth}{!}{%
+
+    \begin{tabular}{lcccccccc}
+    \toprule
+    \multirow{2}{*}{Method} & \multicolumn{2}{c}{pred-96} & \multicolumn{2}{c}{pred-192} & \multicolumn{2}{c}{pred-336} & \multicolumn{2}{c}{pred-720} \\
+    \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+    & MSE & MAE & MSE & MAE & MSE & MAE & MSE & MAE \\
+    \midrule
+    w/ Prefix only & \textbf{0.361} & \textbf{0.392} & \textbf{0.394} & 0.415 & 0.414 & 0.428 & 0.426 & 0.449 \\
+    w/o LLM & 0.365 & 0.399 & 0.405 & 0.425 & 0.429 & 0.441 & 0.450 & 0.468 \\
+    LLM2Attn & 0.383 & 0.404 & 0.414 & 0.422 & 0.431 & 0.432 & 0.456 & 0.454 \\
+    \textbf{Ours} & \textbf{0.361} & \textbf{0.392} & \textbf{0.394} & \textbf{0.413} & \textbf{0.413} & \textbf{0.425} & \textbf{0.416} & \textbf{0.441} \\
+    \bottomrule
+    \end{tabular}
+}
+
+\end{table}
+
+Furthermore, we investigate the necessity of the large language model as a carrier of prior knowledge. When completely removing the GPT-2 backbone, the model experiences a consistent performance drop across all prediction lengths, and the error amplification effect becomes more pronounced with longer prediction horizons. Taking the 720 horizon as an example, the MSE and MAE climb to 0.450 and 0.468, respectively, which are significantly higher than those of the full model. This confirms that the temporal pattern representations and contextual reasoning capabilities embedded in the pre-trained language model provide an indispensable foundation for complex time series forecasting. In addition, experiments replacing the language model with a lightweight attention module show that relying solely on data-driven feature interactions fails to replicate the effectiveness of the semantic-guided prefix. In contrast, the progressive fusion strategy adopted in this paper, through the synergy of independent prefix encoding and dynamic gating, fully activates the generalization potential of pre-trained knowledge while preserving fine-grained responsiveness to the original input sequence. Consequently, it achieves superior error control across short, medium, and long forecasting horizons.
+
+\subsection{Hyperparameter Experiments and Analysis}
+
+The algorithm proposed in this section involves two critical hyperparameters. These are the semantic prefix length and the temperature in the dynamic gating mechanism. The prefix length determines the volume of semantic information injected into the large language model, while the temperature controls the activation distribution of the dynamic gates.
+
+\subsubsection{Semantic Prefix Length}
+
+\begin{figure}[pos=htbp]
+    \centering
+    \caption{Hyperparameter experiment results for different semantic prefix lengths}
+    \includegraphics[width=8cm]{pic/ETTh1_prefix_length.png}
+    \label{fig:prefix_length_impact}
+\end{figure}
+
+An excessively short prefix causes over-compression of structured prompts, including domain, task, and statistical features, failing to provide sufficient guidance. Conversely, a prefix that is too long dominates the attention weights of the original time-series data and introduces redundant noise. Experiments on the ETTh1 dataset evaluate model performance with prefix lengths set to 2, 4, and 6 across prediction horizons $T \in \{96, 192, 336, 720\}$, as illustrated in Figure \ref{fig:prefix_length_impact}. The results indicate that the model achieves optimal prediction accuracy across all horizons when the semantic prefix length $n_p$ is 4. Specifically, the mean squared error (MSE) reaches 0.361 and 0.426 for $T=96$ and $T=720$, respectively. This configuration enables the model to maintain high stability in both short-term and ultra-long-term predictions. This demonstrates that a length of 4 tokens serves as a high-quality semantic anchor, effectively calibrating the attention distribution during autoregressive deep computation and preventing error drift in long-term predictions.
+
+In contrast, reducing the semantic prefix length to 2 leads to significant performance degradation, with errors rising sharply in long-term prediction tasks. For instance, at $T=720$, the MSE increases substantially to 0.474, and the MAE reaches 0.473. This phenomenon stems from insufficient prefix representation capacity. Using only 2 tokens fails to completely map the complex structured semantic information derived from global pooling. Consequently, the guidance signals injected into the Key and Value matrices of the large language model are too weak to correct errors during long-sequence inference filled with prediction noise. On the other hand, increasing the semantic prefix length to 6 yields better performance than the minimal configuration of $n_p=2$, but the overall results remain slightly inferior to those of $n_p=4$, presenting an MSE of 0.431 at $T=720$. From the perspective of attention computation, an excessively long prefix dilutes the attention weight ($w_c$) allocated to the temporal content components during Softmax normalization. This dilution reduces the focus of the large language model on the intrinsic evolution features of the time series. Additionally, redundant prefix tokens introduce static global semantic noise irrelevant to the current local temporal evolution, interfering with precise predictions.
+
+\subsubsection{Dynamic Gating Temperature}
+In the dynamic gating mechanism, the temperature coefficient ($\tau$) serves as a core hyperparameter that directly determines the smoothness of the Sigmoid activation function. This smoothness subsequently affects the intensity and sparsity of the semantic prefix filtering across different layers of the large language model. This section presents comparative experiments and an analytical interpretation of this parameter.
+
+\begin{figure}[pos=htbp]
+    \centering
+    \caption{Hyperparameter experiment results for different gating temperatures}
+    \includegraphics[width=8cm]{pic/ETTh1_temperature_comparison_white.png}
+    \label{fig:gating_temperature_impact}
+\end{figure}
+
+In energy management scenarios of smart building Internet of Things, power transformer time-series data such as ETTh1 generally exhibit dynamic fluctuations and non-stationary characteristics. When processing such complex data, models are prone to error accumulation during long-sequence autoregressive inference. Therefore, accurately controlling the injection ratio of domain semantics across hidden layers becomes particularly critical. Evaluations on the ETTh1 dataset measure model performance across different prediction horizons with $\tau \in \{0.05, 0.1, 0.2\}$. The data demonstrate that the model achieves optimal accuracy and long-term stability at $\tau=0.1$, where the MSE for the prediction horizon $T=720$ drops to 0.416. Under this condition, gating sparsity and smooth gradient backpropagation reach a proper balance. This balance adaptively masks noise interference from redundant layers and improves gradient stability for the prefix generation network during end-to-end training, thereby reducing attention drift in long-term predictions. Adjusting this coefficient impairs model performance to varying degrees. When the temperature coefficient decreases to $\tau=0.05$, the MSE at $T=720$ rises to 0.467. From the perspective of neural network optimization, an excessively low temperature coefficient makes the Sigmoid function too steep, approaching a step function. This hard selection interrupts weak gradient backpropagation in certain layers and induces vanishing gradients. Consequently, the semantic prefix fine-tuning module may converge less smoothly during joint training and may fail to fully capture the local patterns of the time-series data. Conversely, increasing the temperature coefficient to $\tau=0.2$ also results in an upward trend in errors, with the MSE reaching 0.443 at $T=720$. Thus, a reasonable temperature coefficient setting is fundamental to maximizing the effectiveness of the dynamic gating mechanism, and $\tau=0.1$ aligns well with the semantic adjustment requirements of the large language model across different inference depths.
+
+\subsection{Limitations}
+The present study still has several limitations. First, the gains on the Weather dataset and on the M4 ``Others'' category are relatively modest, suggesting that structured semantic prompts are less effective for highly noisy or high-frequency series whose local fluctuations cannot be adequately summarized by coarse domain and statistical descriptors. Second, because part of the baseline results are adopted from published papers, not every compared method is accompanied by repeated-run variance under an identical environment. For this reason, the paper avoids making formal significance claims over all baselines. Third, the current dynamic gate is driven mainly by basic statistical descriptors and pooled semantic embeddings. More fine-grained descriptors, such as spectral features, change-point indicators, or variable-level dependency measures, may further improve the gate's ability to distinguish when semantic guidance should be activated.
+
+
+\section{Conclusion}
+In this study, we addressed the inherent limitations of deploying Large Language Models (LLMs) for complex, non-stationary time series forecasting, primarily focusing on the cross-modal representational misalignment and the degradation of long-horizon predictive stability induced by static semantic interventions. To bridge this gap, we proposed a novel forecasting paradigm that synergizes structured semantic prefixing with a dual-level adaptive dynamic gating mechanism. By explicitly encoding task-specific meta-information and multidimensional statistical priors into deep semantic prefixes, our framework establishes a rigorous cross-modal alignment between continuous numerical manifolds and discrete linguistic spaces via a reparameterized mapping module. 
+
+Furthermore, to circumvent the representational interference and computational redundancy associated with uniform prefix injection across Transformer hierarchies, we engineered an adaptive dynamic gating strategy. This mechanism jointly models layer-wise representational preferences and input-dependent temporal complexity, thereby orchestrating an on-demand, task-aware allocation of semantic guidance. The analytical formulation and empirical validations indicate that this dynamic regulation can scale the gradient flow of semantic injection, reduce prefix-induced attention perturbations in shallow layers, and anchor deep-layer reasoning against error accumulation and semantic drift during autoregressive generation.
+
+Comprehensive empirical evaluations across diverse cross-domain benchmarks substantiate the superiority of the proposed methodology. In long-term forecasting scenarios, our approach consistently achieves state-of-the-art performance, exhibiting pronounced robustness in ultra-long-horizon predictions where traditional baselines suffer from severe error compounding. Concurrently, evaluations on short-term benchmarks (e.g., the M4 dataset) highlight its exceptional generalization and rapid adaptation capabilities, particularly in capturing macro-level periodicities and structured temporal dynamics. Scalability analyses further elucidate that the proposed semantic guidance mechanism efficiently unlocks the temporal reasoning potential of LLMs regardless of parameter scale, rendering lightweight models highly competitive. Ultimately, this work establishes a scalable and interpretable framework for LLM-driven cross-modal time series modeling, paving the way for future investigations into zero-shot multivariate reasoning and advanced multi-modal foundation models in complex dynamical systems.
+
+
+
+
+% {Figures} may be included using the command, \verb+\includegraphics+ in
+% combination with or without its several options to further control
+% graphic. \verb+\includegraphics+ is provided by {graphic[s,x].sty}
+% which is part of any standard \LaTeX{} distribution.
+% {graphicx.sty} is loaded by default. \LaTeX{} accepts figures in
+% the postscript format while pdf\LaTeX{} accepts {*.pdf},
+% {*.mps} (metapost), {*.jpg} and {*.png} formats. 
+% pdf\LaTeX{} does not accept graphic files in the postscript format. 
+
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=.9\textwidth]{figs/cas-munnar-2024.jpg}
+% 	\caption{The beauty of Munnar, Kerala. (See also Table \protect\ref{tbl1}).}
+% 	\label{FIG:1}
+% \end{figure}
+
+
+% The \verb+table+ environment is handy for marking up tabular
+% material. If users want to use {multirow.sty},
+% {array.sty}, etc., to fine control/enhance the tables, they
+% are welcome to load any package of their choice and
+% {cas-sc.cls} will work in combination with all loaded
+% packages.
+
+% \begin{table}[width=.9\linewidth,cols=4,pos=h]
+% \caption{This is a test caption. This is a test caption. This is a test
+% caption. This is a test caption.}\label{tbl1}
+% \begin{tabular*}{\tblwidth}{@{} LLLL@{} }
+% \toprule
+% Col 1 & Col 2 & Col 3 & Col4\\
+% \midrule
+% 12345 & 12345 & 123 & 12345 \\
+% 12345 & 12345 & 123 & 12345 \\
+% 12345 & 12345 & 123 & 12345 \\
+% 12345 & 12345 & 123 & 12345 \\
+% 12345 & 12345 & 123 & 12345 \\
+% \bottomrule
+% \end{tabular*}
+% \end{table}
+
+% \section[Theorem and ...]{Theorem and theorem like environments}
+
+% {cas-sc.cls} provides a few shortcuts to format theorems and
+% theorem-like environments with ease. In all commands the options that
+% are used with the \verb+\newtheorem+ command will work exactly in the same
+% manner. {cas-sc.cls} provides three commands to format theorem or
+% theorem-like environments: 
+
+% \begin{verbatim}
+%  \newtheorem{theorem}{Theorem}
+%  \newtheorem{lemma}[theorem]{Lemma}
+%  \newdefinition{rmk}{Remark}
+%  \newproof{pf}{Proof}
+%  \newproof{pot}{Proof of Theorem \ref{thm2}}
+% \end{verbatim}
+
+
+% The \verb+\newtheorem+ command formats a
+% theorem in \LaTeX's default style with italicized font, bold font
+% for theorem heading and theorem number at the right hand side of the
+% theorem heading.  It also optionally accepts an argument which
+% will be printed as an extra heading in parentheses. 
+
+% \begin{verbatim}
+%   \begin{theorem} 
+%    For system (8), consensus can be achieved with 
+%    $\|T_{\omega z}$ ...
+%      \begin{eqnarray}\label{10}
+%      ....
+%      \end{eqnarray}
+%   \end{theorem}
+% \end{verbatim}  
+
+% \newtheorem{theorem}{Theorem}
+
+% \begin{theorem}
+% For system (8), consensus can be achieved with 
+% $\|T_{\omega z}$ ...
+% \begin{eqnarray}\label{10}
+% ....
+% \end{eqnarray}
+% \end{theorem}
+
+% The \verb+\newdefinition+ command is the same in
+% all respects as its \verb+\newtheorem+ counterpart except that
+% the font shape is roman instead of italic.  Both
+% \verb+\newdefinition+ and \verb+\newtheorem+ commands
+% automatically define counters for the environments defined.
+
+% The \verb+\newproof+ command defines proof environments with
+% upright font shape.  No counters are defined. 
+
+
+% \section[Enumerated ...]{Enumerated and Itemized Lists}
+% {cas-sc.cls} provides an extended list processing macros
+% which makes the usage a bit more user friendly than the default
+% \LaTeX{} list macros.   With an optional argument to the
+% \verb+\begin{enumerate}+ command, you can change the list counter
+% type and its attributes.
+
+% \begin{verbatim}
+%  \begin{enumerate}[1.]
+%  \item The enumerate environment starts with an optional
+%    argument `1.', so that the item counter will be suffixed
+%    by a period.
+%  \item You can use `a)' for alphabetical counter and '(i)' for
+%    roman counter.
+%   \begin{enumerate}[a)]
+%     \item Another level of list with alphabetical counter.
+%     \item One more item before we start another.
+%     \item One more item before we start another.
+%     \item One more item before we start another.
+%     \item One more item before we start another.
+% \end{verbatim}
+
+% Further, the enhanced list environment allows one to prefix a
+% string like `step' to all the item numbers.  
+
+% %\pagebreak
+% \begin{verbatim}
+%  \begin{enumerate}[Step 1.]
+%   \item This is the first step of the example list.
+%   \item Obviously this is the second step.
+%   \item The final step to wind up this example.
+%  \end{enumerate}
+% \end{verbatim}
+
+% \section{Cross-references}
+% In electronic publications, articles may be internally
+% hyperlinked. Hyperlinks are generated from proper
+% cross-references in the article.  For example, the words
+% \textcolor{black!80}{Fig.~1} will never be more than simple text,
+% whereas the proper cross-reference \verb+\ref{tiger}+ may be
+% turned into a hyperlink to the figure itself:
+% \textcolor{blue}{Fig.~1}.  In the same way,
+% the words \textcolor{blue}{Ref.~[1]} will fail to turn into a
+% hyperlink; the proper cross-reference is \verb+\citep{Knuth96}+.
+% Cross-referencing is possible in \LaTeX{} for sections,
+% subsections, formulae, figures, tables, and literature
+% references.
+
+% \section{Bibliography}
+
+% Two bibliographic style files (\verb+*.bst+) are provided ---
+% {model1-num-names.bst} and {model2-names.bst} --- the first one can be
+% used for the numbered scheme. This can also be used for the numbered
+% with new options of {natbib.sty}. The second one is for the author year
+% scheme. When  you use model2-names.bst, the citation commands will be
+% like \verb+\citepp+,  \verb+\citept+, \verb+\citepalt+ etc. However when
+% you use model1-num-names.bst, you may use only \verb+\citep+ command.
+
+% \verb+thebibliography+ environment.  Each reference is a
+% \verb+\bibitem+ and each \verb+\bibitem+ is identified by a label,
+% by which it can be citepd in the text:
+
+% \noindent In connection with cross-referencing and
+% possible future hyperlinking it is not a good idea to collect
+% more that one literature item in one \verb+\bibitem+.  The
+% so-called Harvard or author-year style of referencing is enabled
+% by the \LaTeX{} package {natbib}. With this package the
+% literature can be citepd as follows:
+
+
+% \begin{enumerate}[\textbullet]
+% \item Parenthetical: \verb+\citepp{WB96}+ produces (Wettig \& Brown, 1996).
+% \item Textual: \verb+\citept{ESG96}+ produces Elson et al. (1996).
+% \item An affix and part of a reference:
+% \verb+\citepp[e.g.][Ch. 2]{Gea97}+ produces (e.g. Governato et
+% al., 1997, Ch. 2).
+% \end{enumerate}
+
+% In the numbered scheme of citation, \verb+\citep{<label>}+ is used,
+% since \verb+\citepp+ or \verb+\citept+ has no relevance in the numbered
+% scheme.  {natbib} package is loaded by {cas-sc} with
+% \verb+numbers+ as default option.  You can change this to author-year
+% or harvard scheme by adding option \verb+authoryear+ in the class
+% loading command.  If you want to use more options of the {natbib}
+% package, you can do so with the \verb+\biboptions+ command.  For
+% details of various options of the {natbib} package, please take a
+% look at the {natbib} documentation, which is part of any standard
+% \LaTeX{} installation.
+
+% \appendix
+% \section{My Appendix}
+% Appendix sections are coded under \verb+\appendix+.
+
+% \verb+\printcredits+ command is used after appendix sections to list 
+% author credit taxonomy contribution roles tagged using \verb+\credit+ 
+% in frontmatter.
+
+\printcredits
+
+%% Loading bibliography style file
+%\bibliographystyle{model1-num-names}
+\bibliographystyle{cas-model2-names}
+
+% Loading bibliography database
+\bibliography{cas-refs}
+
+
+%\vskip3pt
+
+\bio{}
+% Author biography without author photo.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+\endbio
+
+% \bio{figs/cas-pic1}
+% Author biography with author photo.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+\endbio
+
+% \vskip3pc
+
+% \bio{figs/cas-pic1}
+% Author biography with author photo.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+% Author biography. Author biography. Author biography.
+\endbio
+
+
+\end{document}
+
